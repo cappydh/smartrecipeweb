@@ -1,0 +1,86 @@
+{
+  "recipes": [
+    {
+      "name": "Tatlı",
+      "description": "Tatlı bir tatlı",
+      "recipeType": "Dessert",
+      "notes": "test",
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "name": "Yemek",
+      "description": "Güzel bir yemek",
+      "recipeType": "Main Dish",
+      "notes": "MMMMH",
+      "userId": 2,
+      "id": 2
+    },
+    {
+      "name": "Tatlılı talı",
+      "description": "tatl ıtaltı",
+      "recipeType": "Dessert",
+      "notes": "not",
+      "userId": 2,
+      "id": 3
+    },
+    {
+      "name": "Tavuk",
+      "description": "Tavuklu yemek",
+      "recipeType": "Main Dish",
+      "notes": "yemek yemek",
+      "userId": 1,
+      "id": 4
+    },
+    {
+      "name": "Pastalı pasta",
+      "description": "Pastalı pasta pasta",
+      "recipeType": "Dessert",
+      "notes": "Pasta",
+      "userId": 2,
+      "id": 5
+    },
+    {
+      "name": "Pastalı pasta",
+      "description": "Pastalı pasta pasta",
+      "recipeType": "Dessert",
+      "notes": "Pastaasd",
+      "userId": 1,
+      "id": 6
+    },
+    {
+      "name": "Pasta",
+      "description": "pasta pasta",
+      "recipeType": "Dessert",
+      "notes": "notlu not",
+      "userId": 1,
+      "id": 7
+    }
+  ],
+  "users": [
+    {
+      "firstname": "Ahmet",
+      "lastname": "Uraloglu",
+      "username": "cappydh",
+      "email": "ahmet.uraloglu@tacas.com.tr",
+      "password": "12345",
+      "id": 1
+    },
+    {
+      "firstname": "Gurkan",
+      "lastname": "Gul",
+      "username": "gurkan.gul",
+      "email": "gurkan.gul@tacas.com.tr",
+      "password": "123qwe",
+      "id": 2
+    },
+    {
+      "firstname": "sedat",
+      "lastname": "pulat",
+      "username": "spulat",
+      "email": "spulat@tacas.com",
+      "password": "zxc",
+      "id": 3
+    }
+  ]
+}
