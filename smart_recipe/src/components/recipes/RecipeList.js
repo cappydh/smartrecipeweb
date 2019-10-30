@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchRecipes, fetchRecipesAndUsers } from "../../actions";
-import CardUserHeader from "./CardUserHeader";
+import UserCardHeader from "./UserCardHeader";
 
 class RecipeList extends React.Component {
   componentDidMount() {
@@ -15,7 +15,6 @@ class RecipeList extends React.Component {
       return this.props.recipes.map(recipe => {
         return (
           <div className="ui card" key={recipe.id}>
-            {this.renderAdmin(recipe)}
             <img
               src={recipe.attachment}
               alt={recipe.id}
@@ -26,14 +25,15 @@ class RecipeList extends React.Component {
               <Link to={`/recipes/${recipe.id}`} className="header">
                 {recipe.name}
               </Link>
-              <CardUserHeader userId={recipe.userId} />
+
               <div className="meta">
-                <span className="date">23.10.1993</span>
+                <span className="date">{recipe.recipeType}</span>
               </div>
               <div className="description">{recipe.description}</div>
             </div>
             <div className="extra content">
-              <i className="user icon" />
+              {this.renderAdmin(recipe)}
+              <UserCardHeader userId={recipe.userId} />
             </div>
           </div>
         );
@@ -62,7 +62,7 @@ class RecipeList extends React.Component {
   renderCreateButton() {
     if (this.props.isSignedIn) {
       return (
-        <div style={{ textAlign: "right" }}>
+        <div style={{ textAlign: "right", marginBottom: "10px" }}>
           <Link to="/recipes/new" className="ui button primary">
             Create Recipe
           </Link>

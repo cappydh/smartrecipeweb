@@ -38,7 +38,7 @@ export const logoutUser = () => async dispatch => {
 };
 
 export const createRecipe = values => async (dispatch, getState) => {
-  const { userId } = getState().users;
+  const { userId } = getState().auth;
   const response = await recipes.post("/recipes", { ...values, userId });
 
   dispatch({ type: CREATE_RECIPE, payload: response.data });
@@ -48,7 +48,7 @@ export const createRecipe = values => async (dispatch, getState) => {
 export const fetchRecipesAndUsers = () => async (dispatch, getState) => {
   await dispatch(fetchRecipes());
 
-  _.chain(getState().posts)
+  _.chain(getState().recipes)
     .map("userId")
     .uniq()
     .forEach(id => dispatch(fetchUser(id)))
@@ -63,7 +63,6 @@ export const fetchRecipes = () => async dispatch => {
 
 export const fetchUser = id => async dispatch => {
   const response = await recipes.get(`/users?id=${id}`);
-  console.log(response);
 
   dispatch({ type: "FETCH_USER", payload: response.data });
 };
