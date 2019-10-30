@@ -12,14 +12,21 @@ class RecipeList extends React.Component {
     if (this.props.recipes.length !== 0) {
       return this.props.recipes.map(recipe => {
         return (
-          <div className="item" key={recipe.id}>
+          <div className="ui card" key={recipe.id}>
             {this.renderAdmin(recipe)}
-            <i className="large middle aligned icon camera" />
+            <img src={recipe.attachment} alt={recipe.id} className="image" />
             <div className="content">
-              <Link to={`/streams/${recipe.id}`} className="header">
+              <Link to={`/recipes/${recipe.id}`} className="header">
                 {recipe.name}
               </Link>
+              <div className="meta">
+                <span className="date">23.10.1993</span>
+              </div>
               <div className="description">{recipe.description}</div>
+            </div>
+            <div className="extra content">
+              <i className="user icon" />
+              22 friends
             </div>
           </div>
         );
@@ -61,7 +68,7 @@ class RecipeList extends React.Component {
     return (
       <div>
         <h2>Recipes</h2>
-        <div className="ui celled list">{this.renderList()}</div>
+        <div className="ui cards">{this.renderList()}</div>
         {this.renderCreateButton()}
       </div>
     );

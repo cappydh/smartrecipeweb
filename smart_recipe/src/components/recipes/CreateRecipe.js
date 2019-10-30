@@ -5,7 +5,17 @@ import WizardForm from "./RecipeCreateWizard/WizardForm";
 
 class CreateRecipe extends React.Component {
   onSubmit = formValues => {
-    this.props.createRecipe(formValues);
+    const file = formValues["attachment"];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        base64: reader.result
+      });
+      formValues["attachment"] = reader.result;
+      this.props.createRecipe(formValues);
+    };
   };
 
   render() {
