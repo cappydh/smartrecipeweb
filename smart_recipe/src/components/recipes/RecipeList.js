@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchRecipes } from "../../actions";
+import { fetchRecipes, fetchRecipesAndUsers } from "../../actions";
+import CardUserHeader from "./CardUserHeader";
 
 class RecipeList extends React.Component {
   componentDidMount() {
     this.props.fetchRecipes();
+    this.props.fetchRecipesAndUsers();
   }
 
   renderList() {
@@ -14,11 +16,17 @@ class RecipeList extends React.Component {
         return (
           <div className="ui card" key={recipe.id}>
             {this.renderAdmin(recipe)}
-            <img src={recipe.attachment} alt={recipe.id} className="image" />
+            <img
+              src={recipe.attachment}
+              alt={recipe.id}
+              className="image"
+              height="290"
+            />
             <div className="content">
               <Link to={`/recipes/${recipe.id}`} className="header">
                 {recipe.name}
               </Link>
+              <CardUserHeader userId={recipe.userId} />
               <div className="meta">
                 <span className="date">23.10.1993</span>
               </div>
@@ -26,7 +34,6 @@ class RecipeList extends React.Component {
             </div>
             <div className="extra content">
               <i className="user icon" />
-              22 friends
             </div>
           </div>
         );
@@ -77,12 +84,12 @@ class RecipeList extends React.Component {
 const mapStateToProps = state => {
   return {
     recipes: Object.values(state.recipes),
-    currentUserId: state.users.userId,
-    isSignedIn: state.users.isSignedIn
+    currentUserId: state.auth.userId,
+    isSignedIn: state.auth.isSignedIn
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchRecipes }
+  { fetchRecipes, fetchRecipesAndUsers }
 )(RecipeList);

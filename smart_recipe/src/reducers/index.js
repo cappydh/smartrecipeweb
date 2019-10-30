@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-import userReducer from "./userReducer";
+import authReducer from "./authReducer";
 import recipeReducer from "./recipeReducer";
+import userReducer from "./userReducer";
 
 export default combineReducers({
   form: formReducer,
-  users: userReducer,
-  recipes: recipeReducer
+  auth: authReducer,
+  recipes: recipeReducer,
+  user: userReducer
 });

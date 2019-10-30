@@ -16,7 +16,7 @@ const renderSignInButton = signInStatus => {
 };
 
 const Header = () => {
-  const isSignedIn = useSelector(state => state.users.isSignedIn);
+  const isSignedIn = useSelector(state => state.auth.isSignedIn);
   const renderButton = renderSignInButton(isSignedIn);
 
   return (

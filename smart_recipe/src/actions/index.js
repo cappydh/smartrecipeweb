@@ -1,3 +1,4 @@
+import _ from "lodash";
 import recipes from "../apis/recipes";
 import history from "../history";
 import {
@@ -44,8 +45,25 @@ export const createRecipe = values => async (dispatch, getState) => {
   history.push("/recipes");
 };
 
+export const fetchRecipesAndUsers = () => async (dispatch, getState) => {
+  await dispatch(fetchRecipes());
+
+  _.chain(getState().posts)
+    .map("userId")
+    .uniq()
+    .forEach(id => dispatch(fetchUser(id)))
+    .value();
+};
+
 export const fetchRecipes = () => async dispatch => {
   const response = await recipes.get("/recipes");
 
   dispatch({ type: FETCH_RECIPES, payload: response.data });
+};
+
+export const fetchUser = id => async dispatch => {
+  const response = await recipes.get(`/users?id=${id}`);
+  console.log(response);
+
+  dispatch({ type: "FETCH_USER", payload: response.data });
 };
