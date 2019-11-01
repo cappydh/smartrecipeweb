@@ -10,7 +10,7 @@ import ShowRecipe from "./recipes/ShowRecipe";
 
 const App = () => {
   return (
-    <div className="ui container">
+    <div className="ui container" style={{ width: "1204px" }}>
       <Router history={history}>
         <Header />
         <Switch>

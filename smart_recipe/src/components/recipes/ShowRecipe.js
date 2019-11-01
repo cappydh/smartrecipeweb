@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchRecipe } from "../../actions";
+import UserCard from "./UserCard";
 
 class ShowRecipe extends React.Component {
   componentDidMount() {
@@ -35,7 +36,7 @@ class ShowRecipe extends React.Component {
           <span>{notes}</span>
         </div>
         <div className="three wide column">
-          <h5>{userId}</h5>
+          <UserCard userId={userId} />
         </div>
       </div>
     );
@@ -43,7 +44,9 @@ class ShowRecipe extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { recipe: state.recipes[ownProps.match.params.id] };
+  return {
+    recipe: state.recipes[ownProps.match.params.id]
+  };
 };
 
 export default connect(
