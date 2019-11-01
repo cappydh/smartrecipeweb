@@ -7,7 +7,10 @@ import {
   LOGOUT_USER,
   LOGIN_ERROR,
   CREATE_RECIPE,
-  FETCH_RECIPES
+  FETCH_RECIPES,
+  FETCH_USER,
+  SEARCH_RECIPES,
+  FETCH_RECIPE
 } from "./types";
 
 export const createUser = formValues => async dispatch => {
@@ -64,5 +67,16 @@ export const fetchRecipes = () => async dispatch => {
 export const fetchUser = id => async dispatch => {
   const response = await recipes.get(`/users?id=${id}`);
 
-  dispatch({ type: "FETCH_USER", payload: response.data });
+  dispatch({ type: FETCH_USER, payload: response.data });
+};
+
+export const searchRecipes = value => async dispatch => {
+  const response = await recipes.get(`/recipes?name_like=${value}`);
+  dispatch({ type: SEARCH_RECIPES, payload: response.data });
+};
+
+export const fetchRecipe = id => async dispatch => {
+  const response = await recipes.get(`/recipes/${id}`);
+
+  dispatch({ type: FETCH_RECIPE, payload: response.data });
 };

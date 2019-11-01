@@ -45,7 +45,7 @@ class RecipeList extends React.Component {
     if (recipe.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
-          <Link to={`/recipes/edit/${recipe.id}`} className="ui button primary">
+          <Link to={`/recipes/${recipe.id}`} className="ui button primary">
             Edit
           </Link>
           <Link

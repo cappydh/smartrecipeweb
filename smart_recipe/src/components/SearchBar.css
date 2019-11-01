@@ -1,0 +1,7 @@
+.item.results:hover {
+  background-color: lightgray !important;
+}
+
+.item.results {
+  padding: 12px !important;
+}

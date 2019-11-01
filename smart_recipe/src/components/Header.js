@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Logout from "./users/Logout";
+import SearchBar from "./SearchBar";
 
 const renderSignInButton = signInStatus => {
   if (signInStatus) {
@@ -25,6 +26,7 @@ const Header = () => {
         SmartRecipe
       </Link>
       <div className="right menu">
+        <SearchBar style={{ marginTop: "10px" }} />
         <Link to="/" className="item">
           HomePage
         </Link>

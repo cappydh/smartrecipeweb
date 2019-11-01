@@ -1,0 +1,52 @@
+import React from "react";
+import { connect } from "react-redux";
+import { fetchRecipe } from "../../actions";
+
+class ShowRecipe extends React.Component {
+  componentDidMount() {
+    this.props.fetchRecipe(this.props.match.params.id);
+  }
+  render() {
+    if (!this.props.recipe) {
+      return <div>Loading...</div>;
+    }
+
+    const {
+      name,
+      description,
+      attachment,
+      recipeType,
+      notes,
+      userId,
+      id
+    } = this.props.recipe;
+
+    return (
+      <div className="ui grid">
+        <div className="four wide column">
+          <img src={attachment} alt={id} className="ui image" />
+        </div>
+        <div className="nine wide column">
+          <h1>{name}</h1>
+          <h3>
+            {description} ({recipeType})
+          </h3>
+
+          <span>{notes}</span>
+        </div>
+        <div className="three wide column">
+          <h5>{userId}</h5>
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state, ownProps) => {
+  return { recipe: state.recipes[ownProps.match.params.id] };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchRecipe }
+)(ShowRecipe);

@@ -5,3 +5,5 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 export const CREATE_RECIPE = "CREATE_RECIPE";
 export const FETCH_RECIPES = "FETCH_RECIPES";
 export const FETCH_USER = "FETCH_USER";
+export const SEARCH_RECIPES = "SEARCH_RECIPES";
+export const FETCH_RECIPE = "FETCH_RECIPE";
