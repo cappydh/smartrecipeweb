@@ -15,12 +15,14 @@ class RecipeList extends React.Component {
       return this.props.recipes.map(recipe => {
         return (
           <div className="ui card" key={recipe.id}>
-            <img
-              src={recipe.attachment}
-              alt={recipe.id}
-              className="image"
-              height="290"
-            />
+            <Link to={`/recipes/${recipe.id}`} className="image">
+              <img
+                src={recipe.attachment}
+                alt={recipe.id}
+                className="image"
+                style={{ height: "259px" }}
+              />
+            </Link>
             <div className="content">
               <Link to={`/recipes/${recipe.id}`} className="header">
                 {recipe.name}
