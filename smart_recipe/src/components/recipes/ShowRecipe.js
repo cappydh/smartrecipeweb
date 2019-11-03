@@ -27,7 +27,7 @@ class ShowRecipe extends React.Component {
         <div className="four wide column">
           <img src={attachment} alt={id} className="ui image" />
         </div>
-        <div className="nine wide column">
+        <div className="eight wide column">
           <h1>{name}</h1>
           <h3>
             {description} ({recipeType})
@@ -35,7 +35,7 @@ class ShowRecipe extends React.Component {
 
           <span>{notes}</span>
         </div>
-        <div className="three wide column">
+        <div className="four wide column">
           <UserCard userId={userId} />
         </div>
       </div>

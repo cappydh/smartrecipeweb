@@ -12,6 +12,7 @@ class UserCard extends React.Component {
       return (
         <React.Fragment>
           <img
+            className="ui tiny left floated image"
             src="https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
             alt="placeholder"
           />
@@ -21,7 +22,11 @@ class UserCard extends React.Component {
 
     return (
       <React.Fragment>
-        <img src={this.props.user.profilepicture} alt={this.props.user.id} />
+        <img
+          className="ui tiny left floated image"
+          src={this.props.user.profilepicture}
+          alt={this.props.user.id}
+        />
       </React.Fragment>
     );
   }
@@ -34,18 +39,21 @@ class UserCard extends React.Component {
     }
     return (
       <div className="ui card">
-        <div className="image">
+        <div className="content">
           {this.renderUserPicture()}
-          <div className="content">
-            <div className="header">
-              {user.firstname} {user.lastname}
-            </div>
-            <div className="meta">Joined Date</div>
-            <div className="description">Description will be here</div>
+          <div className="header">
+            {user.firstname} {user.lastname}
           </div>
-          <div className="extra content">
-            <i className="user icon"></i>
-            xx Followers
+          <div className="meta">23.10.2019</div>
+          <div className="description">Description will be here</div>
+        </div>
+        <div className="extra content">
+          <div className="ui right labeled button" tabIndex="0">
+            <button className="ui blue button">
+              <i aria-hidden="true" className="plus icon"></i>
+              Follow
+            </button>
+            <a className="ui blue left pointing basic label">1234</a>
           </div>
         </div>
       </div>
