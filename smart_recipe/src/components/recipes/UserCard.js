@@ -53,7 +53,7 @@ class UserCard extends React.Component {
               <i aria-hidden="true" className="plus icon"></i>
               Follow
             </button>
-            <a className="ui blue left pointing basic label">1234</a>
+            <div className="ui blue left pointing basic label">1234</div>
           </div>
         </div>
       </div>

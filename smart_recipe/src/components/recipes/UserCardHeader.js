@@ -13,7 +13,7 @@ class UserCardHeader extends React.Component {
     return (
       <div>
         <i className="user icon" />
-        <Link to={`/user/${user.id}`}>{user.username}</Link>
+        <Link to={`/user/${user.id}`}>{user.username} </Link>
       </div>
     );
   }
