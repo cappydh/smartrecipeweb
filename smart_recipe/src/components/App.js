@@ -7,6 +7,7 @@ import CreateRecipe from "./recipes/CreateRecipe";
 import Login from "./users/Login";
 import Signup from "./users/Signup";
 import ShowRecipe from "./recipes/ShowRecipe";
+import ShowUser from "./users/ShowUser";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/signup" exact component={Signup} />
           <Route path="/recipes/new" exact component={CreateRecipe} />
           <Route path="/recipes/:id" exact component={ShowRecipe} />
+          <Route path="/user/:id" exact component={ShowUser} />
         </Switch>
       </Router>
     </div>

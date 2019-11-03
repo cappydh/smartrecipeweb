@@ -6,6 +6,26 @@ class UserCard extends React.Component {
   componentDidMount() {
     this.props.fetchUser(this.props.userId);
   }
+
+  renderUserPicture() {
+    if (!this.props.user.profilepicture) {
+      return (
+        <React.Fragment>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
+            alt="placeholder"
+          />
+        </React.Fragment>
+      );
+    }
+
+    return (
+      <React.Fragment>
+        <img src={this.props.user.profilepicture} alt={this.props.user.id} />
+      </React.Fragment>
+    );
+  }
+
   render() {
     const { user } = this.props;
 
@@ -15,10 +35,10 @@ class UserCard extends React.Component {
     return (
       <div className="ui card">
         <div className="image">
-          <img />
+          {this.renderUserPicture()}
           <div className="content">
             <div className="header">
-              {user[0].firstname} {user[0].lastname}
+              {user.firstname} {user.lastname}
             </div>
             <div className="meta">Joined Date</div>
             <div className="description">Description will be here</div>
@@ -34,7 +54,7 @@ class UserCard extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { user: state.users.find(user => user[0].id === ownProps.userId) };
+  return { user: state.users.find(user => user.id === ownProps.userId) };
 };
 
 export default connect(

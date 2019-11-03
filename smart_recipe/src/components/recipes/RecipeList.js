@@ -25,37 +25,17 @@ class RecipeList extends React.Component {
               <Link to={`/recipes/${recipe.id}`} className="header">
                 {recipe.name}
               </Link>
-
               <div className="meta">
                 <span className="date">{recipe.recipeType}</span>
               </div>
               <div className="description">{recipe.description}</div>
             </div>
             <div className="extra content">
-              {this.renderAdmin(recipe)}
               <UserCardHeader userId={recipe.userId} />
             </div>
           </div>
         );
       });
-    }
-  }
-
-  renderAdmin(recipe) {
-    if (recipe.userId === this.props.currentUserId) {
-      return (
-        <div className="right floated content">
-          <Link to={`/recipes/${recipe.id}`} className="ui button primary">
-            Edit
-          </Link>
-          <Link
-            to={`/recipes/delete/${recipe.id}`}
-            className="ui button negative"
-          >
-            Delete
-          </Link>
-        </div>
-      );
     }
   }
 
@@ -75,8 +55,8 @@ class RecipeList extends React.Component {
     return (
       <div>
         <h2>Recipes</h2>
-        <div className="ui cards">{this.renderList()}</div>
         {this.renderCreateButton()}
+        <div className="ui cards">{this.renderList()}</div>
       </div>
     );
   }

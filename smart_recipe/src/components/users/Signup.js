@@ -3,6 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { createUser } from "../../actions";
 import validate from "./validate";
+import FileInput from "../FileInput";
 
 class Signup extends React.Component {
   renderError({ error, touched }) {
@@ -27,7 +28,17 @@ class Signup extends React.Component {
   };
 
   onSubmit = formValues => {
-    this.props.createUser(formValues);
+    const file = formValues["profilepicture"];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        base64: reader.result
+      });
+      formValues["profilepicture"] = reader.result;
+      this.props.createUser(formValues);
+    };
   };
 
   render() {
@@ -64,6 +75,15 @@ class Signup extends React.Component {
             label="Password"
             type="password"
           />
+          <div className="field">
+            <label>Profile picture</label>
+            <Field
+              name="profilepicture"
+              component={FileInput}
+              type="file"
+              accept=".png, .jpg, .jpeg"
+            />
+          </div>
           <button className="ui button primary">Submit</button>
         </form>
       </div>

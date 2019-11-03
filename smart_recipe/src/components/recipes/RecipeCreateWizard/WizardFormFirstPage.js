@@ -2,24 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import validate from "./validate";
 import renderField from "./renderField";
-
-const adaptFileEventToValue = delegate => e => delegate(e.target.files[0]);
-
-const FileInput = ({
-  input: { value: omitValue, onChange, onBlur, ...inputProps },
-  meta: omitMeta,
-  ...props
-}) => {
-  return (
-    <input
-      onChange={adaptFileEventToValue(onChange)}
-      onBlur={adaptFileEventToValue(onBlur)}
-      type="file"
-      {...inputProps}
-      {...props}
-    />
-  );
-};
+import FieldInput from "../../FileInput";
 
 const WizardFormFirstPage = props => {
   const { handleSubmit } = props;
@@ -42,7 +25,7 @@ const WizardFormFirstPage = props => {
         <label>Attachment</label>
         <Field
           name="attachment"
-          component={FileInput}
+          component={FieldInput}
           type="file"
           accept=".png, .jpg, .jpeg"
         />

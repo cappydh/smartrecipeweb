@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class UserCardHeader extends React.Component {
   render() {
@@ -12,14 +13,14 @@ class UserCardHeader extends React.Component {
     return (
       <div>
         <i className="user icon" />
-        {user[0].username}
+        <Link to={`/user/${user.id}`}>{user.username}</Link>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { user: state.users.find(user => user[0].id === ownProps.userId) };
+  return { user: state.users.find(user => user.id === ownProps.userId) };
 };
 
 export default connect(mapStateToProps)(UserCardHeader);

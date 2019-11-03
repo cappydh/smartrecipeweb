@@ -85,7 +85,7 @@ class SearchBar extends React.Component {
             position: "absolute",
             zIndex: 1,
             background: "white",
-            width: "200px",
+            width: "300px",
             marginTop: "0px"
           }}
         >
