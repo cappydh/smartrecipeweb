@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { FOLLOW_USER, FETCH_FOLLOWS } from "../actions/types";
 
 export default (state = [], action) => {
@@ -6,7 +5,7 @@ export default (state = [], action) => {
     case FOLLOW_USER:
       return { ...state, [action.payload.id]: action.payload };
     case FETCH_FOLLOWS:
-      return { ...state, ...action.payload };
+      return [...state, ...action.payload];
     default:
       return state;
   }

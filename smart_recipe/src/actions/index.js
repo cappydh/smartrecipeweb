@@ -13,7 +13,8 @@ import {
   FETCH_RECIPE,
   FETCH_USER_RECIPES,
   FOLLOW_USER,
-  FETCH_FOLLOWS
+  FETCH_FOLLOWS,
+  UNFOLLOW_USER
 } from "./types";
 
 export const createUser = formValues => async dispatch => {
@@ -97,6 +98,15 @@ export const followUser = (followerId, followedId) => async dispatch => {
   });
 
   dispatch({ type: FOLLOW_USER, payload: response.data });
+};
+
+export const unfollowUser = (followerId, followedId) => async dispatch => {
+  const response = await recipes.delete(
+    `/follows?followerId=${followerId}&followedId=${parseInt(followedId)}`
+  );
+  console.log(response);
+
+  dispatch({ type: UNFOLLOW_USER, payload: response.data });
 };
 
 export const fetchFollows = id => async dispatch => {
