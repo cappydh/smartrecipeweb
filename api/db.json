@@ -110,18 +110,8 @@
   "follows": [
     {
       "followerId": 1,
-      "followedId": 2,
+      "followedId": 3,
       "id": 1
-    },
-    {
-      "followerId": 6,
-      "followedId": 2,
-      "id": 2
-    },
-    {
-      "followerId": 1,
-      "followedId": 4,
-      "id": 3
     }
   ]
 }

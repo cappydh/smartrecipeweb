@@ -13,7 +13,6 @@ import RecipeList from "../recipes/RecipeList";
 class ShowUser extends React.Component {
   componentDidMount() {
     const { id } = this.props.match.params;
-
     this.props.fetchUserRecipes(id);
     this.props.fetchUser(id);
     this.props.fetchFollows(this.props.signedInUser);
@@ -21,6 +20,7 @@ class ShowUser extends React.Component {
 
   onFollowClick = () => {
     this.props.followUser(this.props.signedInUser, this.props.match.params.id);
+    this.forceUpdate();
   };
 
   onUnfollowClick = () => {
@@ -28,6 +28,7 @@ class ShowUser extends React.Component {
       this.props.signedInUser,
       this.props.match.params.id
     );
+    this.forceUpdate();
   };
 
   renderPicture = () => {
@@ -71,28 +72,27 @@ class ShowUser extends React.Component {
       this.props.signedInUser === parseInt(this.props.match.params.id)
     ) {
       return null;
-    } else if (this.props.follows) {
-      if (
-        this.props.follows.some(
-          follow => follow.followedId === parseInt(this.props.match.params.id)
-        )
-      ) {
-        return (
-          <div
-            className="ui right labeled button"
-            style={{ position: "absolute", bottom: 20, width: 300 }}
+    } else if (
+      this.props.follows instanceof Array &&
+      this.props.follows.some(
+        follow => follow.followedId === parseInt(this.props.match.params.id)
+      )
+    ) {
+      return (
+        <div
+          className="ui right labeled button"
+          style={{ position: "absolute", bottom: 20, width: 300 }}
+        >
+          <button
+            className="ui green button"
+            style={{ width: 280 }}
+            onClick={this.onUnfollowClick}
           >
-            <button
-              className="ui green button"
-              style={{ width: 280 }}
-              onClick={this.onUnfollowClick}
-            >
-              <i aria-hidden="true" className="check icon"></i>
-              Following
-            </button>
-          </div>
-        );
-      }
+            <i aria-hidden="true" className="check icon"></i>
+            Following
+          </button>
+        </div>
+      );
     }
 
     return (

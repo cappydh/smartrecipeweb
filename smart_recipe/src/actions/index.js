@@ -101,10 +101,13 @@ export const followUser = (followerId, followedId) => async dispatch => {
 };
 
 export const unfollowUser = (followerId, followedId) => async dispatch => {
-  const response = await recipes.delete(
+  const followResponse = await recipes.get(
     `/follows?followerId=${followerId}&followedId=${parseInt(followedId)}`
   );
-  console.log(response);
+
+  const response = await recipes.delete(
+    `/follows/${followResponse.data[0].id}`
+  );
 
   dispatch({ type: UNFOLLOW_USER, payload: response.data });
 };
