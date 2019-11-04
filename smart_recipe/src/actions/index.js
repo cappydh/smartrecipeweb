@@ -10,7 +10,8 @@ import {
   FETCH_RECIPES,
   FETCH_USER,
   SEARCH_RECIPES,
-  FETCH_RECIPE
+  FETCH_RECIPE,
+  FETCH_USER_RECIPES
 } from "./types";
 
 export const createUser = formValues => async dispatch => {
@@ -62,6 +63,12 @@ export const fetchRecipes = () => async dispatch => {
   const response = await recipes.get("/recipes");
 
   dispatch({ type: FETCH_RECIPES, payload: response.data });
+};
+
+export const fetchUserRecipes = id => async dispatch => {
+  const response = await recipes.get(`/recipes?userId=${id}`);
+
+  dispatch({ type: FETCH_USER_RECIPES, payload: response.data });
 };
 
 export const fetchUser = id => async dispatch => {

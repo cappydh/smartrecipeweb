@@ -4,11 +4,13 @@ import authReducer from "./authReducer";
 import recipeReducer from "./recipeReducer";
 import userReducer from "./userReducer";
 import foundRecipes from "./foundRecipes";
+import userRecipes from "./userRecipes";
 
 export default combineReducers({
   form: formReducer,
   auth: authReducer,
   recipes: recipeReducer,
   users: userReducer,
-  foundRecipes: foundRecipes
+  foundRecipes: foundRecipes,
+  userRecipes: userRecipes
 });

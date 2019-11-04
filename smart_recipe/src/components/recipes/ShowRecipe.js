@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchRecipe } from "../../actions";
 import UserCard from "./UserCard";
+import Spinner from "../Spinner";
 
 class ShowRecipe extends React.Component {
   componentDidMount() {
@@ -9,7 +10,11 @@ class ShowRecipe extends React.Component {
   }
   render() {
     if (!this.props.recipe) {
-      return <div>Loading...</div>;
+      return (
+        <div>
+          <Spinner />
+        </div>
+      );
     }
 
     const {
