@@ -11,7 +11,9 @@ import {
   FETCH_USER,
   SEARCH_RECIPES,
   FETCH_RECIPE,
-  FETCH_USER_RECIPES
+  FETCH_USER_RECIPES,
+  FOLLOW_USER,
+  FETCH_FOLLOWS
 } from "./types";
 
 export const createUser = formValues => async dispatch => {
@@ -86,4 +88,19 @@ export const fetchRecipe = id => async dispatch => {
   const response = await recipes.get(`/recipes/${id}`);
 
   dispatch({ type: FETCH_RECIPE, payload: response.data });
+};
+
+export const followUser = (followerId, followedId) => async dispatch => {
+  const response = await recipes.post("/follows", {
+    followerId,
+    followedId: parseInt(followedId)
+  });
+
+  dispatch({ type: FOLLOW_USER, payload: response.data });
+};
+
+export const fetchFollows = id => async dispatch => {
+  const response = await recipes.get(`/follows?followerId=${id}`);
+
+  dispatch({ type: FETCH_FOLLOWS, payload: response.data });
 };

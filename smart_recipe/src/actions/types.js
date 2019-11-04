@@ -8,3 +8,5 @@ export const FETCH_USER = "FETCH_USER";
 export const SEARCH_RECIPES = "SEARCH_RECIPES";
 export const FETCH_RECIPE = "FETCH_RECIPE";
 export const FETCH_USER_RECIPES = "FETCH_USER_RECIPES";
+export const FOLLOW_USER = "FOLLOW_USER";
+export const FETCH_FOLLOWS = "FETCH_FOLLOWS";

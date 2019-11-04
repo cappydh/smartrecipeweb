@@ -69,7 +69,7 @@ class RecipeList extends React.Component {
   }
 
   renderCreateButton() {
-    if (this.props.isSignedIn) {
+    if (this.props.isSignedIn && !this.props.userRecipes) {
       return (
         <div style={{ textAlign: "right", marginBottom: "10px" }}>
           <Link to="/recipes/new" className="ui button primary">

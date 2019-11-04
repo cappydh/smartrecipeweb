@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchUserRecipes, fetchUser } from "../../actions";
+import {
+  fetchUserRecipes,
+  fetchUser,
+  followUser,
+  fetchFollows
+} from "../../actions";
 import Spinner from "../Spinner";
 import RecipeList from "../recipes/RecipeList";
 
@@ -10,7 +15,12 @@ class ShowUser extends React.Component {
 
     this.props.fetchUserRecipes(id);
     this.props.fetchUser(id);
+    this.props.fetchFollows(this.props.signedInUser);
   }
+
+  onFollowClick = () => {
+    this.props.followUser(this.props.signedInUser, this.props.match.params.id);
+  };
 
   renderPicture = () => {
     if (!this.props.currentUser.profilepicture) {
@@ -46,6 +56,31 @@ class ShowUser extends React.Component {
     );
   };
 
+  renderFollowButton() {
+    //check if already following
+    if (
+      !this.props.signedInUser ||
+      this.props.signedInUser === parseInt(this.props.match.params.id)
+    ) {
+      return null;
+    }
+    return (
+      <div
+        className="ui right labeled button"
+        style={{ position: "absolute", bottom: 20, width: 300 }}
+      >
+        <button
+          className="ui blue button"
+          style={{ width: 280 }}
+          onClick={this.onFollowClick}
+        >
+          <i aria-hidden="true" className="plus icon"></i>
+          Follow
+        </button>
+      </div>
+    );
+  }
+
   render() {
     if (!this.props.currentUser) {
       return (
@@ -59,14 +94,10 @@ class ShowUser extends React.Component {
         <div className="ui grid">
           <div className="three wide column">{this.renderPicture()}</div>
           <div className="eight wide left aligned column">
-            <h2>
-              {this.props.currentUser.firstname}{" "}
-              {this.props.currentUser.lastname}
-            </h2>
-            <span className="date">Joined Date</span>
+            <h2>{this.props.currentUser.username}</h2>
             <div
               className="ui small statistics"
-              style={{ position: "absolute", bottom: 50 }}
+              style={{ position: "absolute", bottom: 75 }}
             >
               <div className="ui statistic">
                 <div className="value">{this.props.userRecipes.length}</div>
@@ -81,12 +112,13 @@ class ShowUser extends React.Component {
                 <div className="label">Follower</div>
               </div>
             </div>
+            {this.renderFollowButton()}
           </div>
         </div>
         <br />
         <RecipeList
           userRecipes={this.props.userRecipes}
-          title={`Recipes by ${this.props.currentUser.firstname} ${this.props.currentUser.lastname}`}
+          title={`Recipes by ${this.props.currentUser.username}`}
         />
       </div>
     );
@@ -97,11 +129,13 @@ const mapStateToProps = (state, ownProps) => {
   const { id } = ownProps.match.params;
   return {
     currentUser: state.users.find(user => user.id === parseInt(id)),
-    userRecipes: state.userRecipes
+    userRecipes: state.userRecipes,
+    signedInUser: state.auth.userId,
+    follows: state.follows
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchUserRecipes, fetchUser }
+  { fetchUserRecipes, fetchUser, followUser, fetchFollows }
 )(ShowUser);
