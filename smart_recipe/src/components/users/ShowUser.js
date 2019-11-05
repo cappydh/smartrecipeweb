@@ -55,6 +55,12 @@ class ShowUser extends React.Component {
     );
   };
 
+  onFollowClick = () => {
+    const { id } = this.props.match.params;
+    this.props.followerNumber(id);
+    this.props.followingNumber(id);
+  };
+
   render() {
     if (!this.props.currentUser) {
       return (
@@ -90,6 +96,7 @@ class ShowUser extends React.Component {
               followerId={this.props.signedInUser}
               followedId={this.props.currentUser.id}
               buttonWidth="300px"
+              onClick={this.onFollowClick()}
             />
           </div>
         </div>
