@@ -11,3 +11,4 @@ export const FETCH_USER_RECIPES = "FETCH_USER_RECIPES";
 export const FOLLOW_USER = "FOLLOW_USER";
 export const UNFOLLOW_USER = "UNFOLLOW_USER";
 export const FETCH_FOLLOWS = "FETCH_FOLLOWS";
+export const IS_FOLLOWING = "IS_FOLLOWING";

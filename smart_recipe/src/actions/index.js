@@ -14,7 +14,8 @@ import {
   FETCH_USER_RECIPES,
   FOLLOW_USER,
   FETCH_FOLLOWS,
-  UNFOLLOW_USER
+  UNFOLLOW_USER,
+  IS_FOLLOWING
 } from "./types";
 
 export const createUser = formValues => async dispatch => {
@@ -116,4 +117,12 @@ export const fetchFollows = id => async dispatch => {
   const response = await recipes.get(`/follows?followerId=${id}`);
 
   dispatch({ type: FETCH_FOLLOWS, payload: response.data });
+};
+
+export const isFollowing = (followerId, followedId) => async dispatch => {
+  const response = await recipes.get(
+    `/follows?followerId=${followerId}&followedId=${parseInt(followedId)}`
+  );
+
+  dispatch({ type: IS_FOLLOWING, payload: response.data });
 };

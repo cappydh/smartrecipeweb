@@ -5,7 +5,8 @@ import {
   fetchUser,
   followUser,
   unfollowUser,
-  fetchFollows
+  fetchFollows,
+  isFollowing
 } from "../../actions";
 import Spinner from "../Spinner";
 import RecipeList from "../recipes/RecipeList";
@@ -16,11 +17,11 @@ class ShowUser extends React.Component {
     this.props.fetchUserRecipes(id);
     this.props.fetchUser(id);
     this.props.fetchFollows(this.props.signedInUser);
+    this.props.isFollowing(this.props.signedInUser, this.props.match.params.id);
   }
 
   onFollowClick = () => {
     this.props.followUser(this.props.signedInUser, this.props.match.params.id);
-    this.forceUpdate();
   };
 
   onUnfollowClick = () => {
@@ -28,7 +29,6 @@ class ShowUser extends React.Component {
       this.props.signedInUser,
       this.props.match.params.id
     );
-    this.forceUpdate();
   };
 
   renderPicture = () => {
@@ -72,12 +72,7 @@ class ShowUser extends React.Component {
       this.props.signedInUser === parseInt(this.props.match.params.id)
     ) {
       return null;
-    } else if (
-      this.props.follows instanceof Array &&
-      this.props.follows.some(
-        follow => follow.followedId === parseInt(this.props.match.params.id)
-      )
-    ) {
+    } else if (this.props.isUserFollowing) {
       return (
         <div
           className="ui right labeled button"
@@ -162,11 +157,19 @@ const mapStateToProps = (state, ownProps) => {
     currentUser: state.users.find(user => user.id === parseInt(id)),
     userRecipes: state.userRecipes,
     signedInUser: state.auth.userId,
-    follows: state.follows
+    follows: state.follows,
+    isUserFollowing: state.follows.isFollowing
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchUserRecipes, fetchUser, followUser, unfollowUser, fetchFollows }
+  {
+    fetchUserRecipes,
+    fetchUser,
+    followUser,
+    unfollowUser,
+    fetchFollows,
+    isFollowing
+  }
 )(ShowUser);
