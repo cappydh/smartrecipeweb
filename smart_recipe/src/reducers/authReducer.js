@@ -6,8 +6,8 @@ import {
 } from "../actions/types";
 
 const INITAL_STATE = {
-  isSignedIn: false,
-  userId: null,
+  isSignedIn: true,
+  userId: 1,
   errorMessage: null
 };
 

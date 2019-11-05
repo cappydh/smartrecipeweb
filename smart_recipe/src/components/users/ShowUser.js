@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import {
   fetchUserRecipes,
   fetchUser,
-  followUser,
-  unfollowUser,
   fetchFollows,
-  isFollowing
+  followerNumber,
+  followingNumber
 } from "../../actions";
 import Spinner from "../Spinner";
 import RecipeList from "../recipes/RecipeList";
+import FollowButton from "../FollowButton";
 
 class ShowUser extends React.Component {
   componentDidMount() {
@@ -17,19 +17,9 @@ class ShowUser extends React.Component {
     this.props.fetchUserRecipes(id);
     this.props.fetchUser(id);
     this.props.fetchFollows(this.props.signedInUser);
-    this.props.isFollowing(this.props.signedInUser, this.props.match.params.id);
+    this.props.followerNumber(id);
+    this.props.followingNumber(id);
   }
-
-  onFollowClick = () => {
-    this.props.followUser(this.props.signedInUser, this.props.match.params.id);
-  };
-
-  onUnfollowClick = () => {
-    this.props.unfollowUser(
-      this.props.signedInUser,
-      this.props.match.params.id
-    );
-  };
 
   renderPicture = () => {
     if (!this.props.currentUser.profilepicture) {
@@ -65,48 +55,6 @@ class ShowUser extends React.Component {
     );
   };
 
-  renderFollowButton() {
-    //check if already following
-    if (
-      !this.props.signedInUser ||
-      this.props.signedInUser === parseInt(this.props.match.params.id)
-    ) {
-      return null;
-    } else if (this.props.isUserFollowing) {
-      return (
-        <div
-          className="ui right labeled button"
-          style={{ position: "absolute", bottom: 20, width: 300 }}
-        >
-          <button
-            className="ui green button"
-            style={{ width: 280 }}
-            onClick={this.onUnfollowClick}
-          >
-            <i aria-hidden="true" className="check icon"></i>
-            Following
-          </button>
-        </div>
-      );
-    }
-
-    return (
-      <div
-        className="ui right labeled button"
-        style={{ position: "absolute", bottom: 20, width: 300 }}
-      >
-        <button
-          className="ui blue button"
-          style={{ width: 280 }}
-          onClick={this.onFollowClick}
-        >
-          <i aria-hidden="true" className="plus icon"></i>
-          Follow
-        </button>
-      </div>
-    );
-  }
-
   render() {
     if (!this.props.currentUser) {
       return (
@@ -130,15 +78,19 @@ class ShowUser extends React.Component {
                 <div className="label">Recipes</div>
               </div>
               <div className="ui statistic">
-                <div className="value">24</div>
+                <div className="value">{this.props.following}</div>
                 <div className="label">Following</div>
               </div>
               <div className="ui statistic">
-                <div className="value">5</div>
+                <div className="value">{this.props.follower}</div>
                 <div className="label">Follower</div>
               </div>
             </div>
-            {this.renderFollowButton()}
+            <FollowButton
+              followerId={this.props.signedInUser}
+              followedId={this.props.currentUser.id}
+              buttonWidth="300px"
+            />
           </div>
         </div>
         <br />
@@ -158,7 +110,8 @@ const mapStateToProps = (state, ownProps) => {
     userRecipes: state.userRecipes,
     signedInUser: state.auth.userId,
     follows: state.follows,
-    isUserFollowing: state.follows.isFollowing
+    follower: state.followerNumbers.followerNumber,
+    following: state.followerNumbers.followingNumber
   };
 };
 
@@ -167,9 +120,8 @@ export default connect(
   {
     fetchUserRecipes,
     fetchUser,
-    followUser,
-    unfollowUser,
     fetchFollows,
-    isFollowing
+    followerNumber,
+    followingNumber
   }
 )(ShowUser);

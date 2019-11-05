@@ -1,11 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchUser } from "../../actions";
+import FollowButton from "../FollowButton";
+import {
+  fetchUser,
+  followUser,
+  unfollowUser,
+  fetchFollows,
+  isFollowing
+} from "../../actions";
 
 class UserCard extends React.Component {
   componentDidMount() {
     this.props.fetchUser(this.props.userId);
+    this.props.fetchFollows(this.props.signedInUser);
+    this.props.isFollowing(this.props.signedInUser, this.props.userId);
   }
 
   renderUserPicture() {
@@ -58,13 +67,11 @@ class UserCard extends React.Component {
           <div className="description">Description will be here</div>
         </div>
         <div className="extra content">
-          <div className="ui right labeled button" tabIndex="0">
-            <button className="ui blue button">
-              <i aria-hidden="true" className="plus icon"></i>
-              Follow
-            </button>
-            <div className="ui blue left pointing basic label">1234</div>
-          </div>
+          <FollowButton
+            followerId={this.props.signedInUser}
+            followedId={user.id}
+            buttonWidth="250px"
+          />
         </div>
       </div>
     );
@@ -72,10 +79,15 @@ class UserCard extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { user: state.users.find(user => user.id === ownProps.userId) };
+  return {
+    user: state.users.find(user => user.id === ownProps.userId),
+    signedInUser: state.auth.userId,
+    follows: state.follows,
+    isUserFollowing: state.follows.isFollowing
+  };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchUser }
+  { fetchUser, followUser, unfollowUser, fetchFollows, isFollowing }
 )(UserCard);

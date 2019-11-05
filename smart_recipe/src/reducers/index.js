@@ -6,6 +6,7 @@ import userReducer from "./userReducer";
 import foundRecipes from "./foundRecipes";
 import userRecipes from "./userRecipes";
 import followReducer from "./followReducer";
+import followerNumber from "./followerNumber";
 
 export default combineReducers({
   form: formReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   users: userReducer,
   foundRecipes: foundRecipes,
   userRecipes: userRecipes,
-  follows: followReducer
+  follows: followReducer,
+  followerNumbers: followerNumber
 });

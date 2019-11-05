@@ -111,12 +111,22 @@
     {
       "followerId": 1,
       "followedId": 3,
-      "id": 1
+      "id": 4
+    },
+    {
+      "followerId": 1,
+      "followedId": 4,
+      "id": 6
+    },
+    {
+      "followerId": 1,
+      "followedId": 6,
+      "id": 7
     },
     {
       "followerId": 1,
       "followedId": 2,
-      "id": 2
+      "id": 8
     }
   ]
 }
