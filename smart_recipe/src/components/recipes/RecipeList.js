@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchRecipes, fetchRecipesAndUsers } from "../../actions";
 import UserCardHeader from "./UserCardHeader";
+import Spinner from "../Spinner";
 
 class RecipeList extends React.Component {
-  componentDidMount() {
-    this.props.fetchRecipesAndUsers();
-  }
+  state = { isLoading: true };
+  componentDidMount = async () => {
+    await this.props.fetchRecipesAndUsers();
+    this.setState({ isLoading: false });
+  };
 
   renderList() {
     return this.props.recipes.map(recipe => {
@@ -61,13 +64,16 @@ class RecipeList extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <h2>{this.props.title}</h2>
-        {this.renderCreateButton()}
-        <div className="ui cards">{this.renderList()}</div>
-      </div>
-    );
+    if (!this.state.isLoading) {
+      return (
+        <div>
+          <h2>{this.props.title}</h2>
+          {this.renderCreateButton()}
+          <div className="ui cards">{this.renderList()}</div>
+        </div>
+      );
+    }
+    return <Spinner />;
   }
 }
 
