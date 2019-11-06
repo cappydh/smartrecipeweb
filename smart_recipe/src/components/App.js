@@ -11,8 +11,17 @@ import ShowUser from "./users/ShowUser";
 
 const App = () => {
   return (
-    <div className="ui container" style={{ width: "1204px" }}>
-      <Router history={history}>
+    <Router history={history}>
+      <div
+        style={{
+          backgroundColor: "rgb(	171, 0, 18)",
+          height: "61.56px",
+          width: "1920px",
+          zIndex: -1,
+          position: "absolute"
+        }}
+      ></div>
+      <div className="ui container" style={{ width: "1204px " }}>
         <Header />
         <Switch>
           <Route path="/recipes" exact component={RecipeList} />
@@ -23,8 +32,8 @@ const App = () => {
           <Route path="/recipes/:id" exact component={ShowRecipe} />
           <Route path="/user/:id" exact component={ShowUser} />
         </Switch>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 };
 

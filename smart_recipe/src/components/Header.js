@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import Logout from "./users/Logout";
 import SearchBar from "./SearchBar";
 
+import "./Header.css";
+
 const renderSignInButton = signInStatus => {
   if (signInStatus) {
     return <Logout />;
   } else {
     return (
-      <Link to="/login" className="item">
+      <Link to="/login" className="item link">
         Login
       </Link>
     );
@@ -21,16 +23,18 @@ const Header = () => {
   const renderButton = renderSignInButton(isSignedIn);
 
   return (
-    <div className="ui secondary pointing menu">
-      <Link to="/" className="item">
+    <div
+      className="ui secondary large menu"
+      style={{ backgroundColor: "rgb(	171, 0, 18)" }}
+    >
+      <Link to="/" className="top aligned item link">
         SmartRecipe
       </Link>
       <div className="right menu">
-        <SearchBar style={{ marginTop: "10px" }} />
-        <Link to="/" className="item">
-          HomePage
-        </Link>
-        <Link to="/recipes" className="item">
+        <div className="item link">
+          <SearchBar />
+        </div>
+        <Link to="/recipes" className="item link">
           Recipes
         </Link>
         {renderButton}

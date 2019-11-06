@@ -68,9 +68,10 @@ class SearchBar extends React.Component {
         className="ui search"
         onBlur={this.closeResults}
         onFocus={this.openResults}
+        style={{ width: "300px" }}
       >
         <form className="ui form">
-          <div className="ui icon input">
+          <div className="ui icon input" style={{ width: "300px" }}>
             <input
               type="text"
               value={this.state.term}

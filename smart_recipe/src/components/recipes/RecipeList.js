@@ -41,8 +41,18 @@ class RecipeList extends React.Component {
   renderCreateButton() {
     if (this.props.isSignedIn && !this.props.userRecipes) {
       return (
-        <div style={{ textAlign: "right", marginBottom: "10px" }}>
-          <Link to="/recipes/new" className="ui button primary">
+        <div
+          style={{
+            textAlign: "right",
+            marginBottom: "30px",
+            marginTop: "-45px"
+          }}
+        >
+          <Link
+            to="/recipes/new"
+            className="ui button"
+            style={{ backgroundColor: "rgb(	171, 0, 18)", color: "white" }}
+          >
             Create Recipe
           </Link>
         </div>

@@ -115,8 +115,13 @@
     },
     {
       "followerId": 1,
-      "followedId": 6,
-      "id": 7
+      "followedId": 3,
+      "id": 9
+    },
+    {
+      "followerId": 1,
+      "followedId": 2,
+      "id": 10
     }
   ]
 }
