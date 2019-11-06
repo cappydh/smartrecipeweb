@@ -62,6 +62,10 @@ class FollowButton extends React.Component {
   }
 }
 
+FollowButton.defaultProps = {
+  onClick: () => {}
+};
+
 const mapStateToProps = state => {
   return {
     isUserFollowing: state.follows.isFollowing,

@@ -8,6 +8,7 @@ class ShowRecipe extends React.Component {
   componentDidMount() {
     this.props.fetchRecipe(this.props.match.params.id);
   }
+
   render() {
     if (!this.props.recipe) {
       return (
