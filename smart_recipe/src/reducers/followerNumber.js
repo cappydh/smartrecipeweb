@@ -1,11 +1,13 @@
-import { FOLLOWER_NUMBER, FOLLOWING_NUMBER } from "../actions/types";
+import { FOLLOW_NUMBERS } from "../actions/types";
 
 export default (state = [], action) => {
   switch (action.type) {
-    case FOLLOWER_NUMBER:
-      return { ...state, followerNumber: action.payload };
-    case FOLLOWING_NUMBER:
-      return { ...state, followingNumber: action.payload };
+    case FOLLOW_NUMBERS:
+      return {
+        ...state,
+        followerNumber: action.payload,
+        followingNumber: action.payload2
+      };
     default:
       return state;
   }

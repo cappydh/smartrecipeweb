@@ -7,12 +7,16 @@ class FollowButton extends React.Component {
     this.props.isFollowing(this.props.followerId, this.props.followedId);
   }
 
-  onFollowClick = () => {
-    this.props.followUser(this.props.followerId, this.props.followedId);
+  onFollowClick = async () => {
+    await this.props.followUser(this.props.followerId, this.props.followedId);
+
+    this.props.onClick();
   };
 
-  onUnfollowClick = () => {
-    this.props.unfollowUser(this.props.followerId, this.props.followedId);
+  onUnfollowClick = async () => {
+    await this.props.unfollowUser(this.props.followerId, this.props.followedId);
+
+    this.props.onClick();
   };
 
   render() {

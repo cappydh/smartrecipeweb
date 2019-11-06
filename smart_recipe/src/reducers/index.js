@@ -16,5 +16,5 @@ export default combineReducers({
   foundRecipes: foundRecipes,
   userRecipes: userRecipes,
   follows: followReducer,
-  followerNumbers: followerNumber
+  followNumbers: followerNumber
 });

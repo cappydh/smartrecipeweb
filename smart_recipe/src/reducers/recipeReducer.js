@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { CREATE_RECIPE, FETCH_RECIPES, FETCH_RECIPE } from "../actions/types";
 
-export default (state = {}, action) => {
+export default (state = [], action) => {
   switch (action.type) {
     case CREATE_RECIPE:
       return { ...state, [action.payload.id]: action.payload };

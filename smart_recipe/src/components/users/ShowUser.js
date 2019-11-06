@@ -4,11 +4,10 @@ import {
   fetchUserRecipes,
   fetchUser,
   fetchFollows,
-  followerNumber,
-  followingNumber
+  followNumbers
 } from "../../actions";
 import Spinner from "../Spinner";
-import RecipeList from "../recipes/RecipeList";
+import UserRecipes from "../recipes/UserRecipes";
 import FollowButton from "../FollowButton";
 
 class ShowUser extends React.Component {
@@ -16,9 +15,7 @@ class ShowUser extends React.Component {
     const { id } = this.props.match.params;
     this.props.fetchUserRecipes(id);
     this.props.fetchUser(id);
-    this.props.fetchFollows(this.props.signedInUser);
-    this.props.followerNumber(id);
-    this.props.followingNumber(id);
+    this.props.followNumbers(id);
   }
 
   renderPicture = () => {
@@ -57,8 +54,7 @@ class ShowUser extends React.Component {
 
   onFollowClick = () => {
     const { id } = this.props.match.params;
-    this.props.followerNumber(id);
-    this.props.followingNumber(id);
+    this.props.followNumbers(id);
   };
 
   render() {
@@ -96,12 +92,14 @@ class ShowUser extends React.Component {
               followerId={this.props.signedInUser}
               followedId={this.props.currentUser.id}
               buttonWidth="300px"
-              onClick={this.onFollowClick()}
+              onClick={() => {
+                this.onFollowClick();
+              }}
             />
           </div>
         </div>
         <br />
-        <RecipeList
+        <UserRecipes
           userRecipes={this.props.userRecipes}
           title={`Recipes by ${this.props.currentUser.username}`}
         />
@@ -117,8 +115,8 @@ const mapStateToProps = (state, ownProps) => {
     userRecipes: state.userRecipes,
     signedInUser: state.auth.userId,
     follows: state.follows,
-    follower: state.followerNumbers.followerNumber,
-    following: state.followerNumbers.followingNumber
+    follower: state.followNumbers.followerNumber,
+    following: state.followNumbers.followingNumber
   };
 };
 
@@ -128,7 +126,6 @@ export default connect(
     fetchUserRecipes,
     fetchUser,
     fetchFollows,
-    followerNumber,
-    followingNumber
+    followNumbers
   }
 )(ShowUser);
