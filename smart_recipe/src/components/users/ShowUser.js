@@ -11,12 +11,14 @@ import UserRecipes from "../recipes/UserRecipes";
 import FollowButton from "../FollowButton";
 
 class ShowUser extends React.Component {
-  componentDidMount() {
+  state = { isLoading: true };
+  componentDidMount = async () => {
     const { id } = this.props.match.params;
-    this.props.fetchUserRecipes(id);
-    this.props.fetchUser(id);
-    this.props.followNumbers(id);
-  }
+    await this.props.fetchUserRecipes(id);
+    await this.props.fetchUser(id);
+    await this.props.followNumbers(id);
+    this.setState({ isLoading: false });
+  };
 
   renderPicture = () => {
     if (!this.props.currentUser.profilepicture) {
@@ -58,53 +60,56 @@ class ShowUser extends React.Component {
   };
 
   render() {
-    if (!this.props.currentUser) {
+    if (!this.state.isLoading) {
+      if (!this.props.currentUser) {
+        return (
+          <div>
+            <Spinner />
+          </div>
+        );
+      }
       return (
         <div>
-          <Spinner />
+          <div className="ui grid">
+            <div className="three wide column">{this.renderPicture()}</div>
+            <div className="eight wide left aligned column">
+              <h2>{this.props.currentUser.username}</h2>
+              <div
+                className="ui small statistics"
+                style={{ position: "absolute", bottom: 75 }}
+              >
+                <div className="ui statistic">
+                  <div className="value">{this.props.userRecipes.length}</div>
+                  <div className="label">Recipes</div>
+                </div>
+                <div className="ui statistic">
+                  <div className="value">{this.props.following}</div>
+                  <div className="label">Following</div>
+                </div>
+                <div className="ui statistic">
+                  <div className="value">{this.props.follower}</div>
+                  <div className="label">Follower</div>
+                </div>
+              </div>
+              <FollowButton
+                followerId={this.props.signedInUser}
+                followedId={this.props.currentUser.id}
+                buttonWidth="300px"
+                onClick={() => {
+                  this.onFollowClick();
+                }}
+              />
+            </div>
+          </div>
+          <br />
+          <UserRecipes
+            userRecipes={this.props.userRecipes}
+            title={`Recipes by ${this.props.currentUser.username}`}
+          />
         </div>
       );
     }
-    return (
-      <div>
-        <div className="ui grid">
-          <div className="three wide column">{this.renderPicture()}</div>
-          <div className="eight wide left aligned column">
-            <h2>{this.props.currentUser.username}</h2>
-            <div
-              className="ui small statistics"
-              style={{ position: "absolute", bottom: 75 }}
-            >
-              <div className="ui statistic">
-                <div className="value">{this.props.userRecipes.length}</div>
-                <div className="label">Recipes</div>
-              </div>
-              <div className="ui statistic">
-                <div className="value">{this.props.following}</div>
-                <div className="label">Following</div>
-              </div>
-              <div className="ui statistic">
-                <div className="value">{this.props.follower}</div>
-                <div className="label">Follower</div>
-              </div>
-            </div>
-            <FollowButton
-              followerId={this.props.signedInUser}
-              followedId={this.props.currentUser.id}
-              buttonWidth="300px"
-              onClick={() => {
-                this.onFollowClick();
-              }}
-            />
-          </div>
-        </div>
-        <br />
-        <UserRecipes
-          userRecipes={this.props.userRecipes}
-          title={`Recipes by ${this.props.currentUser.username}`}
-        />
-      </div>
-    );
+    return <Spinner />;
   }
 }
 
