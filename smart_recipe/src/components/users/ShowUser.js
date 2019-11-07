@@ -11,17 +11,20 @@ import UserRecipes from "../recipes/UserRecipes";
 import FollowButton from "../FollowButton";
 
 class ShowUser extends React.Component {
-  state = { isLoading: true };
+  state = { isLoading: true, currentUser: "" };
   componentDidMount = async () => {
     const { id } = this.props.match.params;
     await this.props.fetchUserRecipes(id);
     await this.props.fetchUser(id);
     await this.props.followNumbers(id);
-    this.setState({ isLoading: false });
+    this.setState({
+      isLoading: false,
+      currentUser: this.props.currentUser.find(user => user.id === parseInt(id))
+    });
   };
 
   renderPicture = () => {
-    if (!this.props.currentUser.profilepicture) {
+    if (!this.state.currentUser.profilepicture) {
       return (
         <React.Fragment>
           <img
@@ -42,8 +45,8 @@ class ShowUser extends React.Component {
       <React.Fragment>
         <img
           className="ui left floated image"
-          src={this.props.currentUser.profilepicture}
-          alt={this.props.currentUser.id}
+          src={this.state.currentUser.profilepicture}
+          alt={this.state.currentUser.id}
           style={{
             width: 200,
             height: 200,
@@ -61,7 +64,7 @@ class ShowUser extends React.Component {
 
   render() {
     if (!this.state.isLoading) {
-      if (!this.props.currentUser) {
+      if (!this.state.currentUser) {
         return (
           <div>
             <Spinner />
@@ -73,7 +76,7 @@ class ShowUser extends React.Component {
           <div className="ui grid">
             <div className="three wide column">{this.renderPicture()}</div>
             <div className="eight wide left aligned column">
-              <h2>{this.props.currentUser.username}</h2>
+              <h2>{this.state.currentUser.username}</h2>
               <div
                 className="ui small statistics"
                 style={{ position: "absolute", bottom: 75 }}
@@ -93,7 +96,7 @@ class ShowUser extends React.Component {
               </div>
               <FollowButton
                 followerId={this.props.signedInUser}
-                followedId={this.props.currentUser.id}
+                followedId={this.state.currentUser.id}
                 buttonWidth="300px"
                 onClick={() => {
                   this.onFollowClick();
@@ -104,7 +107,7 @@ class ShowUser extends React.Component {
           <br />
           <UserRecipes
             userRecipes={this.props.userRecipes}
-            title={`Recipes by ${this.props.currentUser.username}`}
+            title={`Recipes by ${this.state.currentUser.username}`}
           />
         </div>
       );
@@ -113,10 +116,9 @@ class ShowUser extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const { id } = ownProps.match.params;
+const mapStateToProps = state => {
   return {
-    currentUser: state.users.find(user => user.id === parseInt(id)),
+    currentUser: Object.values(state.users),
     userRecipes: state.userRecipes,
     signedInUser: state.auth.userId,
     follows: state.follows,

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class UserCardHeader extends React.Component {
   render() {
-    const { user } = this.props;
+    const user = this.props.users.find(user => user.id === this.props.userId);
 
     if (!user) {
       return null;
@@ -19,8 +19,8 @@ class UserCardHeader extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return { user: state.users.find(user => user.id === ownProps.userId) };
+const mapStateToProps = state => {
+  return { users: Object.values(state.users) };
 };
 
 export default connect(mapStateToProps)(UserCardHeader);

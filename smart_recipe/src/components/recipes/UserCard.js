@@ -11,14 +11,21 @@ import {
 } from "../../actions";
 
 class UserCard extends React.Component {
-  componentDidMount() {
-    this.props.fetchUser(this.props.userId);
-    this.props.fetchFollows(this.props.signedInUser);
-    this.props.isFollowing(this.props.signedInUser, this.props.userId);
-  }
+  state = {
+    user: ""
+  };
+  componentDidMount = async () => {
+    await this.props.fetchUser(this.props.userId);
+    await this.props.fetchFollows(this.props.signedInUser);
+    await this.props.isFollowing(this.props.signedInUser, this.props.userId);
+
+    this.setState({
+      user: this.props.users.find(user => user.id === this.props.userId)
+    });
+  };
 
   renderUserPicture() {
-    if (!this.props.user.profilepicture) {
+    if (!this.state.user.profilepicture) {
       return (
         <React.Fragment>
           <img
@@ -39,8 +46,8 @@ class UserCard extends React.Component {
       <React.Fragment>
         <img
           className="ui tiny left floated image"
-          src={this.props.user.profilepicture}
-          alt={this.props.user.id}
+          src={this.state.user.profilepicture}
+          alt={this.state.user.id}
           style={{ width: 50, height: 50, borderRadius: 50 / 2 }}
         />
       </React.Fragment>
@@ -48,18 +55,16 @@ class UserCard extends React.Component {
   }
 
   render() {
-    const { user } = this.props;
-
-    if (!user) {
+    if (this.state.user === undefined) {
       return null;
     }
     return (
       <div className="ui card">
         <div className="content">
           {this.renderUserPicture()}
-          <Link to={`/user/${user.id}`} className="header">
+          <Link to={`/user/${this.state.user.id}`} className="header">
             <div className="header">
-              {user.firstname} {user.lastname}
+              {this.state.user.firstname} {this.state.user.lastname}
             </div>
           </Link>
 
@@ -69,7 +74,7 @@ class UserCard extends React.Component {
         <div className="extra content">
           <FollowButton
             followerId={this.props.signedInUser}
-            followedId={user.id}
+            followedId={this.state.user.id}
             buttonWidth="250px"
           />
         </div>
@@ -78,9 +83,9 @@ class UserCard extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
-    user: state.users.find(user => user.id === ownProps.userId),
+    users: Object.values(state.users),
     signedInUser: state.auth.userId,
     follows: state.follows,
     isUserFollowing: state.follows.isFollowing

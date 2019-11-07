@@ -80,7 +80,7 @@ export const fetchUserRecipes = id => async dispatch => {
 };
 
 export const fetchUser = id => async dispatch => {
-  const response = await recipes.get(`/users/${id}`);
+  const response = await recipes.get(`/users?id=${id}`);
 
   dispatch({ type: FETCH_USER, payload: response.data });
 };
