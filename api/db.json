@@ -137,7 +137,7 @@
     {
       "comment": "test",
       "recipeId": 4,
-      "createdBy": 1,
+      "createdBy": 6,
       "createdDt": "07.11.2019 09:37:00",
       "id": 3
     },
@@ -147,6 +147,13 @@
       "createdBy": 2,
       "createdDt": "07.11.2019 13:57:55",
       "id": 4
+    },
+    {
+      "comment": "Baklava yorumu",
+      "recipeId": 1,
+      "createdBy": 6,
+      "createdDt": "07.11.2019 16:10:25",
+      "id": 5
     }
   ]
 }

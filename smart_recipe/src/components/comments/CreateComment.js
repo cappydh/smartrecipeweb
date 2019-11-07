@@ -37,7 +37,7 @@ class CreateComment extends React.Component {
           </div>
           <button
             className="ui icon primary left labeled button"
-            onClick={this.handleCreateComment}
+            onClick={e => this.handleCreateComment(e)}
           >
             <i aria-hidden="true" className="edit icon" />
             Add Comment
