@@ -23,7 +23,7 @@ export default (state = INITAL_STATE, action) => {
         errorMessage: null
       };
     case LOGOUT_USER:
-      return { ...state, isSignedIn: false, errorMessage: null };
+      return { ...state, isSignedIn: false, errorMessage: null, userId: null };
     case LOGIN_ERROR:
       return { ...state, isSignedIn: false, errorMessage: action.payload };
     default:

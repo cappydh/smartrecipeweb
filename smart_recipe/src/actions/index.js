@@ -16,7 +16,10 @@ import {
   FETCH_FOLLOWS,
   UNFOLLOW_USER,
   IS_FOLLOWING,
-  FOLLOW_NUMBERS
+  FOLLOW_NUMBERS,
+  CREATE_COMMENT,
+  FETCH_COMMENTS,
+  FETCH_COMMENT_OWNERS
 } from "./types";
 
 export const createUser = formValues => async dispatch => {
@@ -137,4 +140,32 @@ export const followNumbers = id => async dispatch => {
     payload: followerNumber.data.length,
     payload2: followingNumber.data.length
   });
+};
+
+export const createComment = (
+  comment,
+  recipeId,
+  createdBy,
+  createdDt
+) => async dispatch => {
+  const response = await recipes.post("/comments", {
+    comment,
+    recipeId,
+    createdBy,
+    createdDt
+  });
+
+  dispatch({ type: CREATE_COMMENT, payload: response.data });
+};
+
+export const fetchComments = id => async dispatch => {
+  const response = await recipes.get(`/comments?recipeId=${id}`);
+
+  dispatch({ type: FETCH_COMMENTS, payload: response.data });
+};
+
+export const fetchCommentOwners = id => async dispatch => {
+  const response = await recipes.get(`/users?id=${id}`);
+
+  dispatch({ type: FETCH_COMMENT_OWNERS, payload: response.data });
 };
