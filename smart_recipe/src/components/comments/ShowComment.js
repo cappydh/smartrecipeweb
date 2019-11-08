@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchComments, fetchUser } from "../../actions";
 import Spinner from "../Spinner";
+import CreateComment from "./CreateComment";
 
 class ShowComment extends React.Component {
+  state = { parentComment: null, replyingTo: "Write a comment here..." };
+
   componentDidMount = async () => {
     await this.props.fetchComments(this.props.recipeId);
 
@@ -19,9 +22,62 @@ class ShowComment extends React.Component {
     });
   };
 
+  replyButtonHandler = async (parentComment, replyingTo) => {
+    await this.setState({
+      replyingTo: "You are replying to @" + replyingTo,
+      parentComment: parentComment
+    });
+    this.nameInput.focus();
+  };
+
+  renderChildComments(parentCommentId) {
+    const childcomments = this.props.comments.filter(
+      comment => comment.parentComment === parentCommentId
+    );
+
+    return childcomments.map(childComment => {
+      const user = this.props.commentOwners.find(
+        owner => owner.id === childComment.createdBy
+      );
+      if (user && childComment) {
+        return (
+          <div className="ui comments" key={childComment.id}>
+            <div className="comment">
+              <div className="avatar">
+                <img src={user.profilepicture} alt="avatar" />
+              </div>
+              <div className="content">
+                <Link to={`/user/${childComment.createdBy}`} className="author">
+                  {user.username}
+                </Link>
+                <div className="metadata">
+                  <div>{childComment.createdDt}</div>
+                </div>
+                <div className="text">{childComment.comment}</div>
+                <div className="actions">
+                  <button
+                    className="ui mini basic button"
+                    onClick={() =>
+                      this.replyButtonHandler(parentCommentId, user.username)
+                    }
+                    value={childComment.id}
+                  >
+                    Reply
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      return null;
+    });
+  }
+
   renderComments() {
     const comments = this.props.comments.filter(
-      comment => comment.recipeId === this.props.recipeId
+      comment =>
+        comment.recipeId === this.props.recipeId && !comment.parentComment
     );
     return comments.map(comment => {
       const user = this.props.commentOwners.find(
@@ -42,33 +98,64 @@ class ShowComment extends React.Component {
               </div>
               <div className="text">{comment.comment}</div>
               <div className="actions">
-                <Link to="/" className="">
+                <button
+                  className="ui mini basic button"
+                  onClick={() =>
+                    this.replyButtonHandler(comment.id, user.username)
+                  }
+                  value={comment.id}
+                >
                   Reply
-                </Link>
+                </button>
               </div>
             </div>
+            {this.renderChildComments(comment.id)}
           </div>
         );
       }
-      return <Spinner />;
+      return <Spinner key={`Spinner${comment.id}`} />;
     });
   }
 
   render() {
     if (
       this.props.commentOwners !== undefined &&
-      this.props.commentOwners.length > 0
+      this.props.commentOwners.length > 0 &&
+      this.props.isSignedIn
     ) {
-      return this.renderComments();
+      return (
+        <React.Fragment>
+          {this.renderComments()}
+          <CreateComment
+            commentedRecipe={this.props.recipeId}
+            commentText={this.state.replyingTo}
+            parentComment={this.state.parentComment}
+            refInput={input => {
+              this.nameInput = input;
+            }}
+            onLoseFocus={() =>
+              setTimeout(() => {
+                this.setState({
+                  parentComment: null,
+                  replyingTo: "Write a comment here..."
+                });
+              }, 200)
+            }
+          />
+        </React.Fragment>
+      );
+    } else if (!this.props.isSignedIn) {
+      return <React.Fragment>{this.renderComments()}</React.Fragment>;
     }
     return <Spinner />;
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     comments: Object.values(state.comments),
-    commentOwners: Object.values(state.users)
+    commentOwners: Object.values(state.users),
+    isSignedIn: state.auth.isSignedIn
   };
 };
 

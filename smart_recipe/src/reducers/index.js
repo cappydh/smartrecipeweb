@@ -8,7 +8,7 @@ import userRecipes from "./userRecipes";
 import followReducer from "./followReducer";
 import followerNumber from "./followerNumber";
 import commentReducer from "./commentReducer";
-import commentOwnersReducer from "./commentOwnersReducer";
+import ratingReducer from "./ratingReducer";
 
 export default combineReducers({
   form: formReducer,
@@ -20,5 +20,5 @@ export default combineReducers({
   follows: followReducer,
   followNumbers: followerNumber,
   comments: commentReducer,
-  commentOwners: commentOwnersReducer
+  ratings: ratingReducer
 });

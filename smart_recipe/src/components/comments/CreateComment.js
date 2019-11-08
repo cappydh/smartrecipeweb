@@ -18,21 +18,24 @@ class CreateComment extends React.Component {
       this.state.comment,
       commentedRecipe,
       currentUser,
-      new Date().toLocaleString()
+      new Date().toLocaleString(),
+      this.props.parentComment
     );
+    this.setState({ comment: "" });
   };
 
   render() {
     if (this.props.currentUser) {
       return (
         <form className="ui reply form">
-          <div className="field">
+          <div className="field" onBlur={this.props.onLoseFocus}>
             <textarea
               type="textinput"
               name="comment"
-              placeholder="Write a comment here..."
+              placeholder={this.props.commentText}
               value={this.state.comment}
               onChange={this.handleCommentChange}
+              ref={this.props.refInput}
             />
           </div>
           <button

@@ -117,43 +117,70 @@
     },
     {
       "followerId": 1,
-      "followedId": 3,
-      "id": 9
-    },
-    {
-      "followerId": 1,
       "followedId": 2,
-      "id": 10
+      "id": 7
     }
   ],
   "comments": [
     {
-      "comment": "test yorumu",
+      "comment": "Harika bir tarif",
       "recipeId": 4,
       "createdBy": 1,
-      "createdDt": "07.11.2019 09:29:11",
+      "createdDt": "08.11.2019 13:29:34",
+      "parentComment": null,
+      "id": 1
+    },
+    {
+      "comment": "Güzel bir tarif",
+      "recipeId": 4,
+      "createdBy": 1,
+      "createdDt": "08.11.2019 13:30:15",
+      "parentComment": null,
       "id": 2
     },
     {
-      "comment": "test",
-      "recipeId": 4,
-      "createdBy": 6,
-      "createdDt": "07.11.2019 09:37:00",
+      "comment": "Beğenmedim",
+      "recipeId": 1,
+      "createdBy": 1,
+      "createdDt": "08.11.2019 13:30:27",
+      "parentComment": null,
       "id": 3
     },
     {
-      "comment": "Bu da benim yorumum",
+      "comment": "Olmadı",
       "recipeId": 4,
-      "createdBy": 2,
-      "createdDt": "07.11.2019 13:57:55",
+      "createdBy": 1,
+      "createdDt": "08.11.2019 13:30:33",
+      "parentComment": null,
       "id": 4
     },
     {
-      "comment": "Baklava yorumu",
-      "recipeId": 1,
-      "createdBy": 6,
-      "createdDt": "07.11.2019 16:10:25",
+      "comment": "Yapmasını bilememişsindir xd",
+      "recipeId": 4,
+      "createdBy": 1,
+      "createdDt": "08.11.2019 13:30:40",
+      "parentComment": 4,
       "id": 5
+    }
+  ],
+  "ratings": [
+    {
+      "ratingValue": 1,
+      "createdBy": 2,
+      "recipeId": 4,
+      "id": 1
+    },
+    {
+      "ratingValue": 4,
+      "createdBy": 1,
+      "recipeId": 4,
+      "id": 2
+    },
+    {
+      "ratingValue": 4,
+      "createdBy": 1,
+      "recipeId": 1,
+      "id": 3
     }
   ]
 }

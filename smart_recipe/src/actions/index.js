@@ -19,7 +19,8 @@ import {
   FOLLOW_NUMBERS,
   CREATE_COMMENT,
   FETCH_COMMENTS,
-  FETCH_COMMENT_OWNERS
+  CREATE_RATING,
+  FETCH_RATINGS
 } from "./types";
 
 export const createUser = formValues => async dispatch => {
@@ -146,13 +147,15 @@ export const createComment = (
   comment,
   recipeId,
   createdBy,
-  createdDt
+  createdDt,
+  parentComment
 ) => async dispatch => {
   const response = await recipes.post("/comments", {
     comment,
     recipeId,
     createdBy,
-    createdDt
+    createdDt,
+    parentComment
   });
 
   dispatch({ type: CREATE_COMMENT, payload: response.data });
@@ -164,8 +167,22 @@ export const fetchComments = id => async dispatch => {
   dispatch({ type: FETCH_COMMENTS, payload: response.data });
 };
 
-export const fetchCommentOwners = id => async dispatch => {
-  const response = await recipes.get(`/users?id=${id}`);
+export const createRating = (
+  ratingValue,
+  createdBy,
+  recipeId
+) => async dispatch => {
+  const response = await recipes.post("/ratings", {
+    ratingValue,
+    createdBy,
+    recipeId
+  });
 
-  dispatch({ type: FETCH_COMMENT_OWNERS, payload: response.data });
+  dispatch({ type: CREATE_RATING, payload: response.data });
+};
+
+export const fetchRatings = recipeId => async dispatch => {
+  const response = await recipes.get(`/ratings?recipeId=${recipeId}`);
+
+  dispatch({ type: FETCH_RATINGS, payload: response.data });
 };
