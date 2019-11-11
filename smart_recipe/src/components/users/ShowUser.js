@@ -101,6 +101,8 @@ class ShowUser extends React.Component {
                 onClick={() => {
                   this.onFollowClick();
                 }}
+                positionValue="absolute"
+                bottomValue="20"
               />
             </div>
           </div>

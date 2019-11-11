@@ -7,29 +7,41 @@ import CommentSection from "../comments/CommentSection";
 import BeautyStars from "beauty-stars";
 
 class ShowRecipe extends React.Component {
-  state = { value: 0, editable: true, overallRating: 0 };
+  state = {
+    value: 0,
+    editable: true,
+    overallRating: 0,
+    ratingCounter: 0,
+    totalRatings: 0
+  };
   componentDidMount = async () => {
-    await this.props.fetchRecipe(this.props.match.params.id);
+    const { id } = this.props.match.params;
 
-    await this.props.fetchRatings(this.props.match.params.id);
+    await this.props.fetchRecipe(id);
+
+    await this.props.fetchRatings(id);
 
     const rating = this.props.ratings.find(
       rating =>
         rating.createdBy === this.props.currentUser &&
-        rating.recipeId === parseInt(this.props.match.params.id)
+        rating.recipeId === parseInt(id)
     );
 
-    var overallRatingValue = 0;
+    var totalRatingValue = 0;
 
     const overallRating = this.props.ratings.filter(
-      rating => rating.recipeId === parseInt(this.props.match.params.id)
+      rating => rating.recipeId === parseInt(id)
     );
 
     if (overallRating.length > 0) {
-      overallRating.map(rating => (overallRatingValue += rating.ratingValue));
+      this.setState({ ratingCounter: overallRating.length });
+
+      overallRating.map(rating => (totalRatingValue += rating.ratingValue));
+
+      this.setState({ totalRatings: totalRatingValue });
 
       this.setState({
-        overallRating: overallRatingValue / overallRating.length
+        overallRating: totalRatingValue / this.state.ratingCounter
       });
     }
 
@@ -38,10 +50,16 @@ class ShowRecipe extends React.Component {
     }
   };
 
-  renderRating(value, currentUser, recipeId) {
-    this.setState({ value, editable: false });
+  renderRating = async (value, currentUser, recipeId) => {
+    await this.setState({
+      value: value,
+      editable: false,
+      overallRating:
+        (this.state.totalRatings + value) / (this.state.ratingCounter + 1)
+    });
+
     this.props.createRating(value, currentUser, recipeId);
-  }
+  };
 
   renderRatingStars() {
     return (
@@ -87,7 +105,7 @@ class ShowRecipe extends React.Component {
             <h1>{name}</h1>
             <div>{this.renderRatingStars()}</div>
             <div style={{ marginTop: "10px", fontSize: 15 }}>
-              {`Overall Rating: (${this.state.overallRating})`}
+              {`Overall Rating: (${this.state.overallRating.toFixed(1)})`}
             </div>
             <h3>
               {description} ({recipeType})

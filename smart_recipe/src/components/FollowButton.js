@@ -27,43 +27,41 @@ class FollowButton extends React.Component {
       return null;
     } else if (this.props.isUserFollowing) {
       return (
-        <React.Fragment>
-          <button
-            className="ui green button"
-            style={{
-              width: this.props.buttonWidth,
-              position: "absolute",
-              bottom: 20
-            }}
-            onClick={this.onUnfollowClick}
-          >
-            <i aria-hidden="true" className="check icon"></i>
-            Following
-          </button>
-        </React.Fragment>
+        <button
+          className="ui green button"
+          style={{
+            width: this.props.buttonWidth,
+            position: this.props.positionValue,
+            bottom: parseInt(this.props.bottomValue)
+          }}
+          onClick={this.onUnfollowClick}
+        >
+          <i aria-hidden="true" className="check icon"></i>
+          Following
+        </button>
       );
     }
     return (
-      <React.Fragment>
-        <button
-          className="ui blue button"
-          style={{
-            width: this.props.buttonWidth,
-            position: "absolute",
-            bottom: 20
-          }}
-          onClick={this.onFollowClick}
-        >
-          <i aria-hidden="true" className="plus icon"></i>
-          Follow
-        </button>
-      </React.Fragment>
+      <button
+        className="ui blue button"
+        style={{
+          width: this.props.buttonWidth,
+          position: this.props.positionValue,
+          bottom: this.props.bottomValue
+        }}
+        onClick={this.onFollowClick}
+      >
+        <i aria-hidden="true" className="plus icon"></i>
+        Follow
+      </button>
     );
   }
 }
 
 FollowButton.defaultProps = {
-  onClick: () => {}
+  onClick: () => {},
+  position: "",
+  bottom: ""
 };
 
 const mapStateToProps = state => {

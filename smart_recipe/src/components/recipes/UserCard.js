@@ -67,7 +67,6 @@ class UserCard extends React.Component {
               {this.state.user.firstname} {this.state.user.lastname}
             </div>
           </Link>
-
           <div className="meta">23.10.2019</div>
           <div className="description">Description will be here</div>
         </div>

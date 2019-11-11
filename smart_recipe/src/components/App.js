@@ -16,12 +16,12 @@ const App = () => {
         style={{
           backgroundColor: "rgb(	171, 0, 18)",
           height: "61.56px",
-          width: "1920px",
+          width: "100%",
           zIndex: -1,
           position: "absolute"
         }}
       ></div>
-      <div className="ui container" style={{ width: "1204px " }}>
+      <div className="ui container" style={{ width: "60% " }}>
         <Header />
         <Switch>
           <Route path="/recipes" exact component={RecipeList} />

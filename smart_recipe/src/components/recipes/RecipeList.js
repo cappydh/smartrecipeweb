@@ -54,7 +54,7 @@ class RecipeList extends React.Component {
           <Link
             to="/recipes/new"
             className="ui button"
-            style={{ backgroundColor: "rgb(	171, 0, 18)", color: "white" }}
+            style={{ backgroundColor: "orange", color: "white" }}
           >
             Create Recipe
           </Link>
