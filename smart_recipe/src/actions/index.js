@@ -20,7 +20,9 @@ import {
   CREATE_COMMENT,
   FETCH_COMMENTS,
   CREATE_RATING,
-  FETCH_RATINGS
+  FETCH_RATINGS,
+  FETCH_FOLLOWERS,
+  FETCH_FOLLOWINGS
 } from "./types";
 
 export const createUser = formValues => async dispatch => {
@@ -185,4 +187,18 @@ export const fetchRatings = recipeId => async dispatch => {
   const response = await recipes.get(`/ratings?recipeId=${recipeId}`);
 
   dispatch({ type: FETCH_RATINGS, payload: response.data });
+};
+
+export const fetchFollowers = id => async dispatch => {
+  const response = await recipes.get(`/follows?followedId=${id}`);
+  response.data.map(data => dispatch(fetchUser(data.followerId)));
+
+  dispatch({ type: FETCH_FOLLOWERS, payload: response.data });
+};
+
+export const fetchFollowings = id => async dispatch => {
+  const response = await recipes.get(`/follows?followerId=${id}`);
+  response.data.map(data => dispatch(fetchUser(data.followedId)));
+
+  dispatch({ type: FETCH_FOLLOWINGS, payload: response.data });
 };

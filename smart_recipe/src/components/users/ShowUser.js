@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   fetchUserRecipes,
   fetchUser,
@@ -9,6 +10,7 @@ import {
 import Spinner from "../Spinner";
 import UserRecipes from "../recipes/UserRecipes";
 import FollowButton from "../FollowButton";
+import "./ShowUser.css";
 
 class ShowUser extends React.Component {
   state = { isLoading: true, currentUser: "" };
@@ -32,9 +34,9 @@ class ShowUser extends React.Component {
             src="https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
             alt="placeholder"
             style={{
-              width: 200,
-              height: 200,
-              borderRadius: 200 / 2
+              width: 150,
+              height: 150,
+              borderRadius: 150 / 2
             }}
           />
         </React.Fragment>
@@ -48,9 +50,9 @@ class ShowUser extends React.Component {
           src={this.state.currentUser.profilepicture}
           alt={this.state.currentUser.id}
           style={{
-            width: 200,
-            height: 200,
-            borderRadius: 200 / 2
+            width: 150,
+            height: 150,
+            borderRadius: 150 / 2
           }}
         />
       </React.Fragment>
@@ -78,7 +80,7 @@ class ShowUser extends React.Component {
             <div className="eight wide left aligned column">
               <h2>{this.state.currentUser.username}</h2>
               <div
-                className="ui small statistics"
+                className="ui tiny statistics"
                 style={{ position: "absolute", bottom: 75 }}
               >
                 <div className="ui statistic">
@@ -86,11 +88,25 @@ class ShowUser extends React.Component {
                   <div className="label">Recipes</div>
                 </div>
                 <div className="ui statistic">
-                  <div className="value">{this.props.following}</div>
+                  <div className="value">
+                    <Link
+                      to={`/followings/${this.state.currentUser.id}`}
+                      className="followLink"
+                    >
+                      {this.props.following}
+                    </Link>
+                  </div>
                   <div className="label">Following</div>
                 </div>
                 <div className="ui statistic">
-                  <div className="value">{this.props.follower}</div>
+                  <div className="value">
+                    <Link
+                      to={`/followers/${this.state.currentUser.id}`}
+                      className="followLink"
+                    >
+                      {this.props.follower}
+                    </Link>
+                  </div>
                   <div className="label">Follower</div>
                 </div>
               </div>

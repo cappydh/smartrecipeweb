@@ -9,6 +9,7 @@ import followReducer from "./followReducer";
 import followerNumber from "./followerNumber";
 import commentReducer from "./commentReducer";
 import ratingReducer from "./ratingReducer";
+import followerModalReducer from "./followerModalReducer";
 
 export default combineReducers({
   form: formReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
   follows: followReducer,
   followNumbers: followerNumber,
   comments: commentReducer,
-  ratings: ratingReducer
+  ratings: ratingReducer,
+  followerModal: followerModalReducer
 });

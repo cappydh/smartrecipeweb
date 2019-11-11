@@ -1,0 +1,7 @@
+.followLink {
+  color: black;
+}
+
+.followLink:hover {
+  color: #4183c4;
+}

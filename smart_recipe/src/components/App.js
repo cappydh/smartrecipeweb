@@ -8,6 +8,8 @@ import Login from "./users/Login";
 import Signup from "./users/Signup";
 import ShowRecipe from "./recipes/ShowRecipe";
 import ShowUser from "./users/ShowUser";
+import ShowFollowers from "./users/ShowFollowers";
+import ShowFollowings from "./users/ShowFollowings";
 
 const App = () => {
   return (
@@ -31,6 +33,8 @@ const App = () => {
           <Route path="/recipes/new" exact component={CreateRecipe} />
           <Route path="/recipes/:id" exact component={ShowRecipe} />
           <Route path="/user/:id" exact component={ShowUser} />
+          <Route path="/followers/:id" exact component={ShowFollowers} />
+          <Route path="/followings/:id" exact component={ShowFollowings} />
         </Switch>
       </div>
     </Router>
