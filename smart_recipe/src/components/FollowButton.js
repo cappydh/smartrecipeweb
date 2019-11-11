@@ -32,7 +32,7 @@ class FollowButton extends React.Component {
           style={{
             width: this.props.buttonWidth,
             position: this.props.positionValue,
-            bottom: parseInt(this.props.bottomValue)
+            bottom: this.props.bottomValue
           }}
           onClick={this.onUnfollowClick}
         >

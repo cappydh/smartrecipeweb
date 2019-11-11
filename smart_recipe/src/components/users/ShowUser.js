@@ -102,7 +102,7 @@ class ShowUser extends React.Component {
                   this.onFollowClick();
                 }}
                 positionValue="absolute"
-                bottomValue="20"
+                bottomValue="20px"
               />
             </div>
           </div>

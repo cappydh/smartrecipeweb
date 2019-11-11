@@ -21,7 +21,7 @@ const App = () => {
           position: "absolute"
         }}
       ></div>
-      <div className="ui container" style={{ width: "60% " }}>
+      <div className="ui container" style={{ width: "70% " }}>
         <Header />
         <Switch>
           <Route path="/recipes" exact component={RecipeList} />

@@ -224,10 +224,22 @@
       "id": 13
     },
     {
+      "ratingValue": 4,
+      "createdBy": 4,
+      "recipeId": 1,
+      "id": 13
+    },
+    {
       "ratingValue": 5,
       "createdBy": 1,
       "recipeId": 4,
       "id": 14
+    },
+    {
+      "ratingValue": 3,
+      "createdBy": 1,
+      "recipeId": 1,
+      "id": 15
     }
   ]
 }
