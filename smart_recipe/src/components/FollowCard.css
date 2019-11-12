@@ -1,0 +1,7 @@
+.linkToUser {
+  color: black;
+}
+
+.linkToUser:hover {
+  color: #4183c4;
+}

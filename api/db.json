@@ -111,29 +111,39 @@
   ],
   "follows": [
     {
-      "followerId": 1,
-      "followedId": 4,
-      "id": 6
-    },
-    {
       "followerId": 2,
       "followedId": 3,
       "id": 8
     },
-	    {
+    {
       "followerId": 2,
       "followedId": 1,
       "id": 10
     },
-	    {
+    {
       "followerId": 3,
       "followedId": 1,
       "id": 11
     },
     {
       "followerId": 1,
+      "followedId": 6,
+      "id": 39
+    },
+    {
+      "followerId": 1,
+      "followedId": 4,
+      "id": 40
+    },
+    {
+      "followerId": 1,
       "followedId": 2,
-      "id": 9
+      "id": 43
+    },
+    {
+      "followerId": 1,
+      "followedId": 3,
+      "id": 44
     }
   ],
   "comments": [

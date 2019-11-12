@@ -1,31 +1,17 @@
-import {
-  FOLLOW_USER,
-  FETCH_FOLLOWS,
-  UNFOLLOW_USER,
-  IS_FOLLOWING
-} from "../actions/types";
+import _ from "lodash";
+import { FOLLOW_USER, FETCH_FOLLOWS, UNFOLLOW_USER } from "../actions/types";
 
-const INITAL_STATE = {
-  isFollowing: null
-};
-
-export default (state = INITAL_STATE, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case FOLLOW_USER:
       return {
         ...state,
-        [action.payload.id]: action.payload,
-        isFollowing: true
+        [action.payload.id]: action.payload
       };
     case FETCH_FOLLOWS:
-      return { ...state, ...action.payload };
+      return { ...state, ..._.mapKeys(action.payload, "id") };
     case UNFOLLOW_USER:
-      return { ...state, ...action.payload, isFollowing: false };
-    case IS_FOLLOWING:
-      if (action.payload.length > 0) {
-        return { ...state, isFollowing: true };
-      }
-      return { ...state, isFollowing: false };
+      return { ..._.mapKeys(action.payload, "id") };
     default:
       return state;
   }
