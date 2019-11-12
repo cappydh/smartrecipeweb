@@ -127,23 +127,23 @@
     },
     {
       "followerId": 1,
-      "followedId": 6,
-      "id": 39
+      "followedId": 4,
+      "id": 14
     },
     {
       "followerId": 1,
-      "followedId": 4,
-      "id": 40
+      "followedId": 6,
+      "id": 15
     },
     {
       "followerId": 1,
       "followedId": 2,
-      "id": 43
+      "id": 16
     },
     {
       "followerId": 1,
       "followedId": 3,
-      "id": 44
+      "id": 17
     }
   ],
   "comments": [

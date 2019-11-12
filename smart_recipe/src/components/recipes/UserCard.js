@@ -63,9 +63,7 @@ class UserCard extends React.Component {
         <div className="content">
           {this.renderUserPicture()}
           <Link to={`/user/${this.state.user.id}`} className="header">
-            <div className="header">
-              {this.state.user.firstname} {this.state.user.lastname}
-            </div>
+            <div className="header">{this.state.user.username}</div>
           </Link>
           <div className="meta">23.10.2019</div>
           <div className="description">Description will be here</div>

@@ -102,14 +102,14 @@ class ShowRecipe extends React.Component {
             <img src={attachment} alt={id} className="ui image" />
           </div>
           <div className="eight wide column">
-            <h1>{name}</h1>
+            <h1>
+              {name} ({recipeType})
+            </h1>
             <div>{this.renderRatingStars()}</div>
             <div style={{ marginTop: "10px", fontSize: 15 }}>
               {`Overall Rating: (${this.state.overallRating.toFixed(1)})`}
             </div>
-            <h3>
-              {description} ({recipeType})
-            </h3>
+            <h3>{description}</h3>
             <span>{notes}</span>
           </div>
           <div className="four wide column">
