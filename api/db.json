@@ -128,22 +128,22 @@
     {
       "followerId": 1,
       "followedId": 4,
-      "id": 14
+      "id": 93
     },
     {
       "followerId": 1,
       "followedId": 6,
-      "id": 15
-    },
-    {
-      "followerId": 1,
-      "followedId": 2,
-      "id": 16
+      "id": 95
     },
     {
       "followerId": 1,
       "followedId": 3,
-      "id": 17
+      "id": 96
+    },
+    {
+      "followerId": 1,
+      "followedId": 2,
+      "id": 97
     }
   ],
   "comments": [
@@ -260,6 +260,12 @@
       "createdBy": 1,
       "recipeId": 1,
       "id": 15
+    },
+    {
+      "ratingValue": 4,
+      "createdBy": 1,
+      "recipeId": 8,
+      "id": 16
     }
   ]
 }

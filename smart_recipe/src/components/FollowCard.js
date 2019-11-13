@@ -7,6 +7,8 @@ import Spinner from "./Spinner";
 import "./FollowCard.css";
 
 class FollowCard extends React.Component {
+  state = { isLoading: true };
+
   componentDidMount() {
     if (this.props.followingId !== undefined) {
       this.props.fetchFollowings(this.props.followingId);
@@ -14,8 +16,6 @@ class FollowCard extends React.Component {
       this.props.fetchFollowers(this.props.followedId);
     }
   }
-
-  onFollowClick = async () => {};
 
   renderUserAvatar(user) {
     if (user.profilepicture) {
@@ -58,9 +58,6 @@ class FollowCard extends React.Component {
                   <FollowButton
                     followerId={this.props.signedInUser}
                     followedId={follow.followerId}
-                    onClick={() => {
-                      this.onFollowClick();
-                    }}
                     buttonWidth="200px"
                   />
                 </div>
@@ -98,9 +95,6 @@ class FollowCard extends React.Component {
                   <FollowButton
                     followerId={this.props.signedInUser}
                     followedId={follow.followedId}
-                    onClick={() => {
-                      this.onFollowClick();
-                    }}
                     buttonWidth="200px"
                   />
                 </div>
@@ -139,7 +133,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchFollowings, fetchFollowers }
-)(FollowCard);
+export default connect(mapStateToProps, { fetchFollowings, fetchFollowers })(
+  FollowCard
+);

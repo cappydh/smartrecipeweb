@@ -3,10 +3,6 @@
   font-weight: bold !important;
 }
 
-/* .right.menu {
-  margin-right: 18% !important;
+.item.link:hover {
+  background-color: rgb(171, 0, 18) !important;
 }
-
-.top.aligned.item {
-  margin-left: 18% !important;
-} */

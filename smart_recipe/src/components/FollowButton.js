@@ -11,17 +11,18 @@ class FollowButton extends React.Component {
   componentDidMount() {
     this.props.isFollowing(this.props.followerId, this.props.followedId);
     this.props.fetchFollows(this.props.signedInUser);
+    this.setState({ isLoading: false });
   }
 
   onFollowClick = async () => {
     await this.props.followUser(this.props.followerId, this.props.followedId);
-    this.props.fetchFollows(this.props.signedInUser);
+    await this.props.fetchFollows(this.props.signedInUser);
     this.props.onClick();
   };
 
   onUnfollowClick = async () => {
     await this.props.unfollowUser(this.props.followerId, this.props.followedId);
-    this.props.fetchFollows(this.props.signedInUser);
+    await this.props.fetchFollows(this.props.signedInUser);
     this.props.onClick();
   };
 
@@ -86,7 +87,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { isFollowing, followUser, unfollowUser, fetchFollows }
-)(FollowButton);
+export default connect(mapStateToProps, {
+  isFollowing,
+  followUser,
+  unfollowUser,
+  fetchFollows
+})(FollowButton);

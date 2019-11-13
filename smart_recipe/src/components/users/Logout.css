@@ -1,0 +1,7 @@
+.logout {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.logout:hover {
+  color: black;
+}

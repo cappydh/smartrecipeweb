@@ -3,12 +3,22 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Logout from "./users/Logout";
 import SearchBar from "./SearchBar";
+import { Dropdown } from "semantic-ui-react";
 
 import "./Header.css";
 
-const renderSignInButton = signInStatus => {
-  if (signInStatus) {
-    return <Logout />;
+const renderSignInButton = (signInStatus, currentUser) => {
+  if (signInStatus && currentUser) {
+    return (
+      <Dropdown text={currentUser.username} className="item link">
+        <Dropdown.Menu>
+          <Dropdown.Item text="Dark Theme"></Dropdown.Item>
+          <Dropdown.Item>
+            <Logout />
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    );
   } else {
     return (
       <Link to="/login" className="item link">
@@ -20,7 +30,10 @@ const renderSignInButton = signInStatus => {
 
 const Header = () => {
   const isSignedIn = useSelector(state => state.auth.isSignedIn);
-  const renderButton = renderSignInButton(isSignedIn);
+  const currentUserId = useSelector(state => state.auth.userId);
+  const users = useSelector(state => Object.values(state.users));
+  const currentUser = users.find(user => user.id === currentUserId);
+  const renderButton = renderSignInButton(isSignedIn, currentUser);
 
   return (
     <div
