@@ -7,6 +7,8 @@ import Spinner from "./Spinner";
 import "./UserFeed.css";
 
 class UserFeed extends React.Component {
+  state = { commentCounter: 0, followCounter: 0 };
+
   componentDidMount = async () => {
     await this.props.fetchFollowers(this.props.currentUser);
     await this.props.fetchUserRecipes(this.props.currentUser);
@@ -14,10 +16,14 @@ class UserFeed extends React.Component {
     const userRecipes = this.props.userRecipes.filter(
       recipe => recipe.userId === this.props.currentUser
     );
-    userRecipes.map(recipe => {
+
+    await userRecipes.map(recipe => {
       this.props.fetchComments(recipe.id);
       return null;
     });
+
+    this.setState({ followCounter: this.props.follows.length });
+    console.log(this.props.comments);
   };
 
   renderUserAvatar(user) {
@@ -100,6 +106,7 @@ class UserFeed extends React.Component {
             </React.Fragment>
           );
         }
+        return <Spinner key={comment.id} />;
       });
     }
   }
