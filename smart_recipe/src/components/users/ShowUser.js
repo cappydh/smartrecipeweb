@@ -84,7 +84,13 @@ class ShowUser extends React.Component {
                 style={{ position: "absolute", bottom: 75 }}
               >
                 <div className="ui statistic">
-                  <div className="value">{this.props.userRecipes.length}</div>
+                  <div className="value">
+                    {
+                      this.props.userRecipes.filter(
+                        recipe => recipe.userId === this.state.currentUser.id
+                      ).length
+                    }
+                  </div>
                   <div className="label">Recipes</div>
                 </div>
                 <div className="ui statistic">
@@ -124,7 +130,9 @@ class ShowUser extends React.Component {
           </div>
           <br />
           <UserRecipes
-            userRecipes={this.props.userRecipes}
+            userRecipes={this.props.userRecipes.filter(
+              recipe => recipe.userId === this.state.currentUser.id
+            )}
             title={`Recipes by ${this.state.currentUser.username}`}
           />
         </div>
@@ -137,7 +145,7 @@ class ShowUser extends React.Component {
 const mapStateToProps = state => {
   return {
     currentUser: Object.values(state.users),
-    userRecipes: state.userRecipes,
+    userRecipes: Object.values(state.userRecipes),
     signedInUser: state.auth.userId,
     follows: state.follows,
     follower: state.followNumbers.followerNumber,
@@ -145,12 +153,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    fetchUserRecipes,
-    fetchUser,
-    fetchFollows,
-    followNumbers
-  }
-)(ShowUser);
+export default connect(mapStateToProps, {
+  fetchUserRecipes,
+  fetchUser,
+  fetchFollows,
+  followNumbers
+})(ShowUser);

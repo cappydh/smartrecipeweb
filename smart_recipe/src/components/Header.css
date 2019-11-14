@@ -6,3 +6,11 @@
 .item.link:hover {
   background-color: rgb(171, 0, 18) !important;
 }
+
+.myProfile {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.myProfile:hover {
+  color: black;
+}

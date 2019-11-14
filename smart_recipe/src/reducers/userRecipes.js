@@ -1,9 +1,10 @@
+import _ from "lodash";
 import { FETCH_USER_RECIPES } from "../actions/types";
 
-export default (state = [], action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case FETCH_USER_RECIPES:
-      return [...action.payload];
+      return { ...state, ..._.mapKeys(action.payload, "id") };
     default:
       return state;
   }

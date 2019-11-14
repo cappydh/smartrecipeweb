@@ -30,6 +30,24 @@ class ShowComment extends React.Component {
     this.nameInput.focus();
   };
 
+  renderUserAvatar(user) {
+    if (user.profilepicture) {
+      return (
+        <div className="avatar">
+          <img src={user.profilepicture} alt="avatar" />
+        </div>
+      );
+    }
+    return (
+      <div className="avatar">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png"
+          alt="avatar"
+        />
+      </div>
+    );
+  }
+
   renderChildComments(parentCommentId) {
     const childcomments = this.props.comments.filter(
       comment => comment.parentComment === parentCommentId
@@ -43,9 +61,7 @@ class ShowComment extends React.Component {
         return (
           <div className="ui comments" key={childComment.id}>
             <div className="comment">
-              <div className="avatar">
-                <img src={user.profilepicture} alt="avatar" />
-              </div>
+              {this.renderUserAvatar({ user })}
               <div className="content">
                 <Link to={`/user/${childComment.createdBy}`} className="author">
                   {user.username}
@@ -86,9 +102,7 @@ class ShowComment extends React.Component {
       if (user) {
         return (
           <div className="comment" key={comment.id}>
-            <div className="avatar">
-              <img src={user.profilepicture} alt="avatar" />
-            </div>
+            {this.renderUserAvatar(user)}
             <div className="content">
               <Link to={`/user/${comment.createdBy}`} className="author">
                 {user.username}
@@ -159,7 +173,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchComments, fetchUser }
-)(ShowComment);
+export default connect(mapStateToProps, { fetchComments, fetchUser })(
+  ShowComment
+);

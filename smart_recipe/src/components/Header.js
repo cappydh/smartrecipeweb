@@ -4,20 +4,30 @@ import { Link } from "react-router-dom";
 import Logout from "./users/Logout";
 import SearchBar from "./SearchBar";
 import { Dropdown } from "semantic-ui-react";
+import UserFeed from "./UserFeed";
 
 import "./Header.css";
 
 const renderSignInButton = (signInStatus, currentUser) => {
   if (signInStatus && currentUser) {
     return (
-      <Dropdown text={currentUser.username} className="item link">
-        <Dropdown.Menu>
-          <Dropdown.Item text="Dark Theme"></Dropdown.Item>
-          <Dropdown.Item>
-            <Logout />
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+      <React.Fragment>
+        <Dropdown text="My Feed" className="item link">
+          <Dropdown.Menu>
+            <UserFeed currentUser={currentUser.id} />
+          </Dropdown.Menu>
+        </Dropdown>
+        <Dropdown text={currentUser.username} className="item link">
+          <Dropdown.Menu>
+            <Link to={`/user/${currentUser.id}`} className="myProfile">
+              <Dropdown.Item>My Profile</Dropdown.Item>
+            </Link>
+            <Dropdown.Item>
+              <Logout />
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </React.Fragment>
     );
   } else {
     return (

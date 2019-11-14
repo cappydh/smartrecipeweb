@@ -55,7 +55,7 @@ class UserCard extends React.Component {
   }
 
   render() {
-    if (this.state.user === undefined) {
+    if (this.state.user === undefined || this.state.user === "") {
       return null;
     }
     return (
@@ -89,7 +89,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchUser, followUser, unfollowUser, fetchFollows, isFollowing }
-)(UserCard);
+export default connect(mapStateToProps, {
+  fetchUser,
+  followUser,
+  unfollowUser,
+  fetchFollows,
+  isFollowing
+})(UserCard);
