@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/smartrecipeweb/smart_recipe/static/css/main.6766c012.chunk.css",
+    "main.js": "/smartrecipeweb/smart_recipe/static/js/main.cc47321b.chunk.js",
+    "main.js.map": "/smartrecipeweb/smart_recipe/static/js/main.cc47321b.chunk.js.map",
+    "runtime-main.js": "/smartrecipeweb/smart_recipe/static/js/runtime-main.f7bff9a0.js",
+    "runtime-main.js.map": "/smartrecipeweb/smart_recipe/static/js/runtime-main.f7bff9a0.js.map",
+    "static/js/2.a315c40e.chunk.js": "/smartrecipeweb/smart_recipe/static/js/2.a315c40e.chunk.js",
+    "static/js/2.a315c40e.chunk.js.map": "/smartrecipeweb/smart_recipe/static/js/2.a315c40e.chunk.js.map",
+    "index.html": "/smartrecipeweb/smart_recipe/index.html",
+    "precache-manifest.d2647373a62dcda5f5cfbe483563183b.js": "/smartrecipeweb/smart_recipe/precache-manifest.d2647373a62dcda5f5cfbe483563183b.js",
+    "service-worker.js": "/smartrecipeweb/smart_recipe/service-worker.js",
+    "static/css/main.6766c012.chunk.css.map": "/smartrecipeweb/smart_recipe/static/css/main.6766c012.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f7bff9a0.js",
+    "static/js/2.a315c40e.chunk.js",
+    "static/css/main.6766c012.chunk.css",
+    "static/js/main.cc47321b.chunk.js"
+  ]
+}
