@@ -3,7 +3,7 @@ import {
   LOGIN_USER,
   LOGOUT_USER,
   LOGIN_ERROR
-} from "../actions/types";
+} from "../actions/types/userTypes";
 
 const INITAL_STATE = {
   isSignedIn: true,

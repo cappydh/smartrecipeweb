@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createComment } from "../../actions";
+import { createComment } from "../../redux/actions/commentActions";
 
 class CreateComment extends React.Component {
   state = { comment: "" };
@@ -56,7 +56,4 @@ const mapStateToProps = state => {
   return { currentUser: state.auth.userId };
 };
 
-export default connect(
-  mapStateToProps,
-  { createComment }
-)(CreateComment);
+export default connect(mapStateToProps, { createComment })(CreateComment);

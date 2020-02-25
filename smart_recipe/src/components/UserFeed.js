@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchFollowers, fetchComments, fetchUserRecipes } from "../actions";
+import { fetchFollowers } from "../redux/actions/followActions";
+import { fetchComments } from "../redux/actions/commentActions";
+import { fetchUserRecipes } from "../redux/actions/recipeActions";
 import Spinner from "./Spinner";
 
-import "./UserFeed.css";
+import "../styles/UserFeed.css";
 
 class UserFeed extends React.Component {
   state = { commentCounter: 0, followCounter: 0 };

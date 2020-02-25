@@ -5,7 +5,7 @@ import {
   unfollowUser,
   isFollowing,
   fetchFollows
-} from "../actions";
+} from "../redux/actions/followActions";
 
 class FollowButton extends React.Component {
   componentDidMount() {

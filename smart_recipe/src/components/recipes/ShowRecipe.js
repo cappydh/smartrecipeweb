@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchRecipe, createRating, fetchRatings } from "../../actions";
+import { fetchRecipe } from "../../redux/actions/recipeActions";
+import { createRating, fetchRatings } from "../../redux/actions/ratingActions";
 import UserCard from "./UserCard";
 import Spinner from "../Spinner";
 import CommentSection from "../comments/CommentSection";
@@ -131,7 +132,8 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchRecipe, createRating, fetchRatings }
-)(ShowRecipe);
+export default connect(mapStateToProps, {
+  fetchRecipe,
+  createRating,
+  fetchRatings
+})(ShowRecipe);

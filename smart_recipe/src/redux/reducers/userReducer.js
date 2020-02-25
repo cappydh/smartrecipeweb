@@ -1,11 +1,9 @@
 import _ from "lodash";
-import { CREATE_COMMENT, FETCH_COMMENTS } from "../actions/types";
+import { FETCH_USER } from "../actions/types/userTypes";
 
 export default (state = [], action) => {
   switch (action.type) {
-    case CREATE_COMMENT:
-      return { ...state, [action.payload.id]: action.payload };
-    case FETCH_COMMENTS:
+    case FETCH_USER:
       return { ...state, ..._.mapKeys(action.payload, "id") };
     default:
       return state;

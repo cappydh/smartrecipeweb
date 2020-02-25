@@ -1,5 +1,9 @@
 import _ from "lodash";
-import { FOLLOW_USER, FETCH_FOLLOWS, UNFOLLOW_USER } from "../actions/types";
+import {
+  FOLLOW_USER,
+  FETCH_FOLLOWS,
+  UNFOLLOW_USER
+} from "../actions/types/followTypes";
 
 export default (state = {}, action) => {
   switch (action.type) {

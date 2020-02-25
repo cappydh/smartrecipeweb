@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { createUser } from "../../actions";
+import { createUser } from "../../redux/actions/userActions";
 import validate from "./validate";
 import FileInput from "../FileInput";
 
@@ -96,7 +96,4 @@ const formWrapped = reduxForm({
   validate
 })(Signup);
 
-export default connect(
-  null,
-  { createUser }
-)(formWrapped);
+export default connect(null, { createUser })(formWrapped);

@@ -1,8 +1,8 @@
 import React from "react";
-import { searchRecipes } from "../actions";
+import { searchRecipes } from "../redux/actions/recipeActions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import "./SearchBar.css";
+import "../styles/SearchBar.css";
 
 class SearchBar extends React.Component {
   state = { term: "", isOpen: false };
@@ -103,7 +103,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { searchRecipes }
-)(SearchBar);
+export default connect(mapStateToProps, { searchRecipes })(SearchBar);

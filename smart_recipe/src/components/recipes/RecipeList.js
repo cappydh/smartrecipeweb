@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchRecipes, fetchRecipesAndUsers } from "../../actions";
+import {
+  fetchRecipes,
+  fetchRecipesAndUsers
+} from "../../redux/actions/recipeActions";
 import UserCardHeader from "./UserCardHeader";
 import Spinner from "../Spinner";
 
@@ -89,7 +92,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchRecipes, fetchRecipesAndUsers }
-)(RecipeList);
+export default connect(mapStateToProps, { fetchRecipes, fetchRecipesAndUsers })(
+  RecipeList
+);

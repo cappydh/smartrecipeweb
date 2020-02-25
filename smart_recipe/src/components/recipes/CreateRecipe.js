@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createRecipe } from "../../actions";
+import { createRecipe } from "../../redux/actions/recipeActions";
 import WizardForm from "./RecipeCreateWizard/WizardForm";
 
 class CreateRecipe extends React.Component {
@@ -23,7 +23,4 @@ class CreateRecipe extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  { createRecipe }
-)(CreateRecipe);
+export default connect(null, { createRecipe })(CreateRecipe);

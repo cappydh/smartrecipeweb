@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchComments, fetchUser } from "../../actions";
+import { fetchComments } from "../../redux/actions/commentActions";
+import { fetchUser } from "../../redux/actions/userActions";
 import Spinner from "../Spinner";
 import CreateComment from "./CreateComment";
 

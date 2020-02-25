@@ -2,7 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions";
+import { loginUser } from "../../redux/actions/userActions";
 
 class Login extends React.Component {
   renderError({ error, touched }) {
@@ -92,7 +92,4 @@ const formWrapped = reduxForm({
   validate
 })(Login);
 
-export default connect(
-  mapStateToProps,
-  { loginUser }
-)(formWrapped);
+export default connect(mapStateToProps, { loginUser })(formWrapped);

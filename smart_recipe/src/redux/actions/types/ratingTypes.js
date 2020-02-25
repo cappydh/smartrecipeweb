@@ -1,0 +1,2 @@
+export const CREATE_RATING = "CREATE_RATING";
+export const FETCH_RATINGS = "FETCH_RATINGS";

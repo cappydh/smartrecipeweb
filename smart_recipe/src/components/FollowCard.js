@@ -1,10 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchFollowers, fetchFollowings } from "../actions";
+import {
+  fetchFollowers,
+  fetchFollowings
+} from "../redux/actions/followActions";
 import { Link } from "react-router-dom";
 import FollowButton from "./FollowButton";
 import Spinner from "./Spinner";
-import "./FollowCard.css";
+import "../styles/FollowCard.css";
 
 class FollowCard extends React.Component {
   state = { isLoading: true };

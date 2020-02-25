@@ -1,4 +1,4 @@
-import { SEARCH_RECIPES } from "../actions/types";
+import { SEARCH_RECIPES } from "../actions/types/recipeTypes";
 
 export default (state = [], action) => {
   switch (action.type) {

@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 import { Dropdown } from "semantic-ui-react";
 import UserFeed from "./UserFeed";
 
-import "./Header.css";
+import "../styles/Header.css";
 
 const renderSignInButton = (signInStatus, currentUser) => {
   if (signInStatus && currentUser) {

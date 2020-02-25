@@ -1,5 +1,8 @@
 import _ from "lodash";
-import { FETCH_FOLLOWINGS, FETCH_FOLLOWERS } from "../actions/types";
+import {
+  FETCH_FOLLOWINGS,
+  FETCH_FOLLOWERS
+} from "../actions/types/followTypes";
 
 export default (state = {}, action) => {
   switch (action.type) {

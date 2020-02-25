@@ -1,4 +1,4 @@
-import { FOLLOW_NUMBERS } from "../actions/types";
+import { FOLLOW_NUMBERS } from "../actions/types/followTypes";
 
 export default (state = [], action) => {
   switch (action.type) {

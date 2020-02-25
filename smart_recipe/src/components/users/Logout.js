@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { logoutUser } from "../../actions";
+import { logoutUser } from "../../redux/actions/userActions";
 
-import "./Logout.css";
+import "../../styles/Logout.css";
 
 class Logout extends React.Component {
   render() {

@@ -1,16 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  fetchUserRecipes,
-  fetchUser,
-  fetchFollows,
-  followNumbers
-} from "../../actions";
+import { fetchUser } from "../../redux/actions/userActions";
+import { fetchUserRecipes } from "../../redux/actions/recipeActions";
+import { fetchFollows, followNumbers } from "../../redux/actions/followActions";
 import Spinner from "../Spinner";
 import UserRecipes from "../recipes/UserRecipes";
 import FollowButton from "../FollowButton";
-import "./ShowUser.css";
+import "../../styles/ShowUser.css";
 
 class ShowUser extends React.Component {
   state = { isLoading: true, currentUser: "" };

@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import FollowButton from "../FollowButton";
 import {
-  fetchUser,
   followUser,
   unfollowUser,
   fetchFollows,
   isFollowing
-} from "../../actions";
+} from "../../redux/actions/followActions";
+import { fetchUser } from "../../redux/actions/userActions";
 
 class UserCard extends React.Component {
   state = {

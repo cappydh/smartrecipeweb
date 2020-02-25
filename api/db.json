@@ -127,23 +127,23 @@
     },
     {
       "followerId": 1,
-      "followedId": 2,
-      "id": 105
-    },
-    {
-      "followerId": 1,
       "followedId": 6,
       "id": 107
     },
     {
       "followerId": 1,
-      "followedId": 3,
-      "id": 108
+      "followedId": 4,
+      "id": 109
     },
     {
       "followerId": 1,
-      "followedId": 4,
-      "id": 109
+      "followedId": 2,
+      "id": 110
+    },
+    {
+      "followerId": 1,
+      "followedId": 3,
+      "id": 111
     }
   ],
   "comments": [
@@ -151,7 +151,7 @@
       "comment": "Harika bir tarif",
       "recipeId": 4,
       "createdBy": 4,
-      "createdDt": "08.11.2019 13:29:34",
+      "createdDt": "11.02.2020 17:29:34",
       "parentComment": null,
       "id": 1
     },
@@ -159,7 +159,7 @@
       "comment": "Güzel bir tarif",
       "recipeId": 4,
       "createdBy": 3,
-      "createdDt": "08.11.2019 13:30:15",
+      "createdDt": "11.02.2020 17:30:15",
       "parentComment": null,
       "id": 2
     },
@@ -167,7 +167,7 @@
       "comment": "Beğenmedim",
       "recipeId": 1,
       "createdBy": 2,
-      "createdDt": "08.11.2019 13:30:27",
+      "createdDt": "11.02.2020 17:30:27",
       "parentComment": null,
       "id": 3
     },
@@ -175,31 +175,31 @@
       "comment": "Olmadı",
       "recipeId": 4,
       "createdBy": 4,
-      "createdDt": "08.11.2019 13:30:33",
+      "createdDt": "11.02.2020 17:30:33",
       "parentComment": null,
       "id": 4
     },
     {
-      "comment": "Yapmasını bilememişsindir xd",
+      "comment": "Güzel olmadı",
       "recipeId": 4,
       "createdBy": 3,
-      "createdDt": "08.11.2019 13:30:40",
+      "createdDt": "12.02.2020 18:30:40",
       "parentComment": 4,
       "id": 5
     },
     {
-      "comment": "Bunu adanada yicen",
+      "comment": "Bunu adanada yemek lazım",
       "recipeId": 6,
       "createdBy": 2,
-      "createdDt": "14.11.2019 11:28:20",
+      "createdDt": "12.02.2020 19:28:20",
       "parentComment": null,
       "id": 6
     },
     {
-      "comment": "ok",
+      "comment": "Test",
       "recipeId": 1,
       "createdBy": 3,
-      "createdDt": "14.11.2019 11:39:43",
+      "createdDt": "12.02.2020 19:39:43",
       "parentComment": null,
       "id": 7
     }
